@@ -159,6 +159,9 @@ if __name__ == "__main__":
         sys.exit("missing env var: TICKETSDEV_API_KEY")
     caps, lists, failed = [], [], 0
     for r in todo:
+        if (datetime.now(timezone.utc) - NOW).total_seconds() > 40 * 60:   # stay inside the hourly slot
+            print("   time budget reached; remaining games roll to the next run")
+            break
         cap, ls = do_capture(r)
         caps.append(cap); lists += ls
         failed += cap["ok"] != "1"
