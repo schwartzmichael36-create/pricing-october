@@ -1,0 +1,4 @@
+.env
+data/pricing.db
+__pycache__/
+.DS_Store

@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pricing October — Project Blueprint</title>
+<style>
+  @page { size: letter; margin: 0.45in 0.5in 0.5in 0.5in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9.1pt; line-height: 1.3; color: #14202e;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  :root {
+    --navy: #0b1f3a; --ink: #14202e; --gold: #c9962b; --gold-soft: #f6ecd4;
+    --line: #cfd6de; --soft: #f2f4f7; --red: #b3261e; --green: #1d7a4d; --blue: #1f5fa8;
+  }
+  .page { height: 10.05in; page-break-after: always; overflow: hidden; position: relative; padding-bottom: 0.25in; }
+  .page:last-child { page-break-after: auto; }
+  .foot { position: absolute; bottom: 0; left: 0; right: 0; font-size: 7.4pt; color: #6b7684; display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 3px; }
+  h1 { font-size: 24pt; margin: 0 0 4px; color: var(--navy); letter-spacing: -0.3px; line-height: 1.1; }
+  h2 { font-size: 14pt; margin: 0 0 6px; color: var(--navy); border-bottom: 2px solid var(--gold); padding-bottom: 3px; }
+  h3 { font-size: 10.5pt; margin: 9px 0 3px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 5px; }
+  .kicker { font-size: 8pt; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+  .lead { font-size: 10.4pt; color: #33404f; }
+  .grid2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; }
+  .grid2.wide-left { grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .box { border: 1px solid var(--line); border-radius: 5px; padding: 7px 9px; background: #fff; }
+  .box.soft { background: var(--soft); }
+  .box.gold { background: var(--gold-soft); border-color: #e3cf9a; }
+  .box.navy { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .box.navy h3 { color: var(--gold); }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid var(--line); padding: 3px 5px; vertical-align: top; text-align: left; }
+  th { background: var(--navy); color: #fff; font-weight: 600; font-size: 8.4pt; }
+  td { font-size: 8.3pt; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  .tight td, .tight th { padding: 2px 4px; }
+  ul, ol { margin: 2px 0 5px 16px; padding: 0; }
+  li { margin-bottom: 2px; }
+  .chk { display: inline-block; width: 10px; height: 10px; border: 1.3px solid var(--ink); border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+  .tag { display: inline-block; font-size: 7.2pt; font-weight: 700; padding: 1px 5px; border-radius: 3px; margin: 0 2px 2px 0; text-transform: uppercase; letter-spacing: 0.3px; }
+  .t-sql { background: #dbe8f7; color: #1f4b87; } .t-py { background: #e2f0e6; color: #1d5e3a; }
+  .t-eng { background: #efe3f5; color: #5a2d78; } .t-stat { background: #fbe6d9; color: #8a3f12; }
+  .t-viz { background: #fff1c9; color: #6f5200; } .t-biz { background: #f9dede; color: #8b1e1e; }
+  .t-comm { background: #e0f2f1; color: #0f5e57; } .t-cs { background: #e8eaf6; color: #303f9f; }
+  code, .mono { font-family: Menlo, "SF Mono", Consolas, monospace; font-size: 8.2pt; }
+  pre { font-family: Menlo, "SF Mono", Consolas, monospace; font-size: 7.6pt; line-height: 1.3; background: #0f1a2a; color: #e6edf5; padding: 6px 8px; border-radius: 4px; margin: 3px 0 6px; white-space: pre; overflow: hidden; }
+  .line { border-bottom: 1px solid #9aa4b0; height: 14px; }
+  .blank { display: inline-block; border-bottom: 1px solid #9aa4b0; min-width: 90px; height: 11px; vertical-align: bottom; }
+  .big { font-size: 20pt; font-weight: 700; color: var(--navy); line-height: 1; }
+  .stat { text-align: center; padding: 6px 4px; }
+  .stat .lbl { font-size: 7.4pt; text-transform: uppercase; letter-spacing: 0.6px; color: #6b7684; margin-top: 2px; }
+  .timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 6px 0; }
+  .tl { border-top: 4px solid var(--gold); padding-top: 4px; font-size: 8pt; }
+  .tl b { display: block; color: var(--navy); }
+  .due { color: var(--red); font-weight: 700; }
+  .ok { color: var(--green); font-weight: 700; }
+  .small { font-size: 8pt; color: #4d5866; }
+  .pipeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; align-items: stretch; }
+  .stage { border: 1.5px solid var(--navy); border-radius: 5px; padding: 6px 6px; font-size: 8.2pt; position: relative; background: #fff; }
+  .stage b { display: block; font-size: 9pt; color: var(--navy); margin-bottom: 2px; }
+  .stage .n { position: absolute; top: -9px; left: 6px; background: var(--gold); color: #fff; font-weight: 700; font-size: 8pt; padding: 0 6px; border-radius: 8px; }
+  /* bracket */
+  .bracket { display: grid; grid-template-columns: 1fr 1fr 1fr 1.05fr 1fr 1fr 1fr; gap: 6px; align-items: center; }
+  .slot { border: 1.2px solid var(--ink); border-radius: 4px; padding: 3px 5px; min-height: 26px; font-size: 8.4pt; background: #fff; margin: 3px 0; }
+  .slot.fill { border-style: dashed; color: #8a94a1; }
+  .slot .seed { color: var(--gold); font-weight: 700; margin-right: 3px; }
+  .col-title { font-size: 7.6pt; text-transform: uppercase; letter-spacing: 0.7px; color: #6b7684; text-align: center; margin-bottom: 2px; font-weight: 700; }
+  .ws { border: 2px solid var(--gold); border-radius: 6px; padding: 6px; background: var(--gold-soft); text-align: center; }
+  .cover-band { background: var(--navy); color: #fff; padding: 16px 18px; border-radius: 6px; margin: 8px 0 12px; }
+  .cover-band h1 { color: #fff; font-size: 30pt; }
+  .cover-band .kicker { color: var(--gold); }
+  .cover-band p { color: #d5dde8; }
+  .two { column-count: 2; column-gap: 14px; }
+  .sched td, .sched th { font-size: 8.1pt; padding: 2px 4px; }
+  .sched td:nth-child(2) { white-space: nowrap; }
+  .rcsv td, .rcsv th { font-size: 6.9pt; padding: 1px 3px; white-space: nowrap; }
+  .sql pre { font-size: 6.35pt; line-height: 1.22; padding: 5px 6px; margin: 2px 0 5px; }
+  .sql h3 { margin-top: 6px; }
+  .bracket .slot { min-height: 30px; font-size: 9pt; padding: 5px 7px; margin: 4px 0; }
+  .toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px 10px; font-size: 8.2pt; }
+  .toc div { border-bottom: 1px dotted var(--line); padding: 2px 0; }
+  .toc b { color: var(--gold); margin-right: 4px; }
+  .skills td:first-child { font-weight: 600; width: 22%; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ PAGE 1: COVER / OVERVIEW -->
+<div class="page">
+  <div class="cover-band">
+    <div class="kicker">Project blueprint · Sports business analytics portfolio · v1 · Sep 27, 2026</div>
+    <h1>Pricing October</h1>
+    <p class="lead" style="color:#e8eef6">How the ticket market prices uncertainty during the 2026 MLB postseason: games that may never be played, series that can end in two nights, and a Yankees–Red Sox Wild Card that sells out before anyone knows who’s pitching.</p>
+    <p style="margin-top:8px">Michael Schwartz · Auburn University · BSBA Business Analytics, Computer Science minor · Class of 2028</p>
+  </div>
+
+  <div class="grid3" style="margin-bottom:10px">
+    <div class="box stat"><div class="big">12</div><div class="lbl">teams tracked</div></div>
+    <div class="box stat"><div class="big">~45</div><div class="lbl">possible postseason games</div></div>
+    <div class="box stat"><div class="big">24/day</div><div class="lbl">snapshots per game, every hour</div></div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h3>The question</h3>
+      <p>A regular-season ticket has weeks on sale and a known opponent. A postseason ticket can go on sale before the game exists (“Game 5, if necessary”), change opponent overnight, and vanish when a series ends early. <b>How does the market price that uncertainty, and where does that leave money on the table for the club?</b></p>
+      <h3>Why it matters to a team</h3>
+      <p>Postseason inventory is the highest-margin ticketing a club sells all year, and the one it has the least time to price. Every Strategy &amp; Analytics group in the league watches the resale market in October. This project does what they do, on public data, and writes it up the way they would.</p>
+      <h3>What gets built</h3>
+      <ul>
+        <li>An hourly data pipeline (Python → GitHub Actions → CSV → SQLite) that runs unattended for five weeks</li>
+        <li>A SQL analysis layer: pacing, price curves, primary-vs-resale gap, series-state effects</li>
+        <li>A regression that puts a number on the “if necessary” discount and the series-state premium</li>
+        <li>A Tableau Public dashboard (4 views) and a one-page memo written for a VP of Ticketing</li>
+        <li>A public GitHub repo with a README a hiring manager can read in three minutes</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Skills on display</h3>
+      <div style="margin-bottom:6px">
+        <span class="tag t-sql">SQL · joins · CTEs · window functions</span>
+        <span class="tag t-py">Python · requests · pandas · statsmodels</span>
+        <span class="tag t-eng">Data engineering · APIs · ETL · scheduling</span>
+        <span class="tag t-cs">CS · git · CI/CD · error handling · reproducibility</span>
+        <span class="tag t-stat">Statistics · regression · event study · elasticity</span>
+        <span class="tag t-viz">Tableau Public dashboard</span>
+        <span class="tag t-biz">Ticketing · dynamic pricing · primary vs secondary · inventory</span>
+        <span class="tag t-comm">Executive memo · LinkedIn post · outreach</span>
+      </div>
+      <h3>Timeline</h3>
+      <div class="timeline" style="grid-template-columns: repeat(3, 1fr)">
+        <div class="tl"><b>Sep 27–29</b>Keys, repo, first snapshot. Live before first pitch (Tue 2 pm ET).</div>
+        <div class="tl"><b>Sep 29–Oct 1</b>Wild Card. Watch the pipeline, fix what breaks, fill the bracket.</div>
+        <div class="tl"><b>Oct 3–10</b>Division Series. First SQL queries over Fall Break (Oct 8–9).</div>
+        <div class="tl"><b>Oct 11–20</b>LCS. Regression model. First Tableau views (Oct 16–17).</div>
+        <div class="tl"><b>Oct 23–31</b>World Series. Memo draft (Oct 24). README (Oct 30).</div>
+        <div class="tl"><b>Nov 1–5</b>Final data. Publish Nov 2. Project-led outreach Nov 3–5.</div>
+      </div>
+      <h3>Who it’s written for</h3>
+      <p class="small">Primary: Mets Ticketing Strategy &amp; Analytics (Jeff Manahan), Yankees Business Strategy summer program, MLB League Office Ticketing internship (deadline ~Dec 19). Secondary: every Tier-A team on the target list, because every one of them prices a playoff run the same way.</p>
+    </div>
+  </div>
+
+  <div class="box gold" style="margin-top:10px">
+    <b>Status right now:</b> scraper written and compiling (<span class="mono">~/Desktop/Pricing-October</span>). Not yet running. It needs two free API keys and a GitHub repo, and only you can create those accounts. Page 2 is the checklist. First pitch is <b>Tuesday, Sep 29, 2:00 pm ET</b> (Phillies at Braves). Every hour before that is a data point we keep.
+  </div>
+
+  <h3 style="margin-top:12px">What’s in this blueprint</h3>
+  <div class="toc">
+    <div><b>2</b> What I need from you, in order</div>
+    <div><b>3</b> The system, end to end</div>
+    <div><b>4</b> Bracket to fill in · health log</div>
+    <div><b>5</b> Schedule, every possible game</div>
+    <div><b>6</b> Data dictionary</div>
+    <div><b>7</b> Analysis plan · seven questions</div>
+    <div><b>8</b> The model, in dollars</div>
+    <div><b>9</b> The SQL, in learning order</div>
+    <div><b>10</b> Dashboard spec</div>
+    <div><b>11</b> Memo skeleton · outreach</div>
+    <div><b>12</b> Skills matrix</div>
+    <div><b>13</b> Resume · TeamWork Online · pitch</div>
+    <div><b>14</b> Day by day, Sep 27 → Nov 5</div>
+    <div><b>15</b> Risks · definition of done</div>
+  </div>
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 1 · Overview</span></div>
+</div>
+
+<!-- ============================================================ PAGE 2: WHAT I NEED FROM YOU -->
+<div class="page">
+  <h2>What I need from you, in order</h2>
+  <p class="lead">Everything below is something I can’t do for you: it creates an account in your name. Each one is about five minutes. Do them in order; #5 is the one that turns the lights on.</p>
+
+  <h3><span class="due">Before first pitch · deadline Tue Sep 29, 1:00 pm ET · ideally Monday night</span></h3>
+  <table>
+    <tr><th style="width:4%"></th><th style="width:24%">Item</th><th>Exactly what to do</th><th style="width:22%">What I do with it</th></tr>
+    <tr><td><span class="chk"></span></td><td><b>1. SeatGeek client ID</b><br><span class="small">resale-market data</span></td>
+      <td>Go to <b>seatgeek.com/account/develop</b> (log in or make a free SeatGeek account). Create an app: name it <i>pricing-october</i>, any URL. Copy the <b>Client ID</b>. If the page won’t create apps anymore, tell me: we fall back to Ticketmaster only and the project still works.</td>
+      <td>Every hour: lowest / average / median / highest resale price and listing count for every postseason game.</td></tr>
+    <tr><td><span class="chk"></span></td><td><b>2. Ticketmaster consumer key</b><br><span class="small">primary-market data</span></td>
+      <td>Go to <b>developer.ticketmaster.com</b> → Get your API key → create an account → create an app. Copy the <b>Consumer Key</b>. (The Discovery API is free; 5,000 calls/day is far more than we need.)</td>
+      <td>Every hour: the club’s own price range and on-sale status, so we can measure the primary-vs-resale gap.</td></tr>
+    <tr><td><span class="chk"></span></td><td><b>3. Fill the .env file</b></td>
+      <td>In <span class="mono">~/Desktop/Pricing-October</span>, duplicate <span class="mono">.env.example</span> as <span class="mono">.env</span> and paste the two keys after the equals signs. <b>Don’t paste keys into chat.</b> The file is git-ignored and never leaves your Mac.</td>
+      <td>I run the first snapshot from your machine and fix whatever the APIs complain about.</td></tr>
+    <tr><td><span class="chk"></span></td><td><b>4. GitHub repo + secrets</b></td>
+      <td>github.com → New repository → name <b>pricing-october</b>, <b>Public</b>, no README (we have one). Then Settings → Secrets and variables → Actions → New repository secret, twice: name <span class="mono">SEATGEEK_CLIENT_ID</span>, then <span class="mono">TM_API_KEY</span>, each with its key as the value.</td>
+      <td>The hourly job runs on GitHub’s servers, not your laptop. Secrets keep the keys out of the code.</td></tr>
+    <tr><td><span class="chk"></span></td><td><b>5. Tell me “keys are in”</b></td>
+      <td>That’s it. I initialize git, run the first snapshot, fix errors, and hand you one <span class="mono">git push</span> command. Then we watch the Actions tab for the first green check.</td>
+      <td>Pipeline live. Bracket page and schedule page take over from here.</td></tr>
+  </table>
+
+  <h3>During the postseason · 2 minutes a day, plus the blocks already in your game plan</h3>
+  <table>
+    <tr><th style="width:4%"></th><th style="width:24%">When</th><th>What</th></tr>
+    <tr><td><span class="chk"></span></td><td>Every morning</td><td>Open the repo’s <b>Actions</b> tab. Green check = data is flowing. Red X = screenshot it to me the same day. A missed day is a hole in the price curve we can’t fill later.</td></tr>
+    <tr><td><span class="chk"></span></td><td>After every series</td><td>Fill in the bracket (p. 4) and mark the schedule (p. 5). Note anything weird you saw as a fan: a rainout, a pitcher announcement, a viral sellout. Those become the annotations on the dashboard.</td></tr>
+    <tr><td><span class="chk"></span></td><td>Thu Oct 8 · Fall Break</td><td>3-hour block: run <span class="mono">build_db.py</span>, write the first five queries (p. 9). This is the SQL you’ve been learning, on your own data.</td></tr>
+    <tr><td><span class="chk"></span></td><td>Fri Oct 16 – Sat Oct 17</td><td>Create a free <b>Tableau Public</b> account (public.tableau.com). Build the first two dashboard views (p. 10).</td></tr>
+    <tr><td><span class="chk"></span></td><td>Sat Oct 24</td><td>Memo draft (p. 11). Send it to me; I’ll be the VP of Ticketing who tears it apart.</td></tr>
+    <tr><td><span class="chk"></span></td><td>Fri Oct 30 – Sat Oct 31</td><td>README with screenshots. Ask one Sports Analytics Club officer or professor to critique it.</td></tr>
+    <tr><td><span class="chk"></span></td><td>Mon Nov 2</td><td>Publish: LinkedIn post, dashboard link, one finding. Tag the Sports Analytics Club.</td></tr>
+    <tr><td><span class="chk"></span></td><td>Tue Nov 3 – Thu Nov 5</td><td>Project-led outreach (p. 11): Mets, Yankees, MLB, Braves, Rays, then the rest of Tier A.</td></tr>
+  </table>
+
+  <div class="grid2" style="margin-top:8px">
+    <div class="box soft">
+      <h3 style="margin-top:0">Accounts you’ll end up with (all free)</h3>
+      <ul>
+        <li>SeatGeek developer app</li>
+        <li>Ticketmaster developer app</li>
+        <li>GitHub (public repo, Actions enabled by default)</li>
+        <li>Tableau Public (mid-October)</li>
+      </ul>
+    </div>
+    <div class="box soft">
+      <h3 style="margin-top:0">What you never have to do</h3>
+      <ul>
+        <li>Leave your laptop on. GitHub runs the job.</li>
+        <li>Write the scraper. Done. You’ll read it, and we’ll walk through it so you can explain every line in an interview.</li>
+        <li>Learn Tableau from scratch. Four views, one data source. We build it together.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 2 · What I need from you</span></div>
+</div>
+
+<!-- ============================================================ PAGE 3: PIPELINE / ARCHITECTURE -->
+<div class="page">
+  <h2>The system, end to end</h2>
+  <p class="lead">Seven stages. Each one is a thing a recruiter can point at and ask you about. The tags say which skill it proves.</p>
+
+  <div class="pipeline" style="margin:14px 0 10px">
+    <div class="stage"><span class="n">1</span><b>Two public APIs</b>SeatGeek /2/events (resale stats) and Ticketmaster Discovery v2 (primary priceRanges). Auth by query-string key.<br><span class="tag t-eng">APIs</span><span class="tag t-biz">Primary vs resale</span></div>
+    <div class="stage"><span class="n">2</span><b>scrape.py</b>Pages through both APIs, filters to postseason titles by regex, flattens JSON to flat rows, appends to CSV. One source failing doesn’t kill the other.<br><span class="tag t-py">Python</span><span class="tag t-cs">Error handling</span></div>
+    <div class="stage"><span class="n">3</span><b>GitHub Actions</b>Cron at :07 every hour. Installs Python, runs the script with secrets injected, commits new rows. Zero servers, zero cost.<br><span class="tag t-eng">Scheduling</span><span class="tag t-cs">CI/CD · secrets</span></div>
+    <div class="stage"><span class="n">4</span><b>CSV in git</b>Append-only snapshot log. Every commit is a timestamped audit trail; the repo’s history <i>is</i> the dataset’s lineage.<br><span class="tag t-cs">Version control</span><span class="tag t-eng">Data lineage</span></div>
+    <div class="stage"><span class="n">5</span><b>SQLite</b>build_db.py loads both tables, indexes on (event, time), adds a <span class="mono">resale</span> view with hours_to_game. Grain: one row per game per hour.<br><span class="tag t-sql">Schema · grain</span><span class="tag t-eng">ETL</span></div>
+    <div class="stage"><span class="n">6</span><b>Analysis</b>SQL for pacing and curves; pandas + statsmodels for the regression; matplotlib for memo charts.<br><span class="tag t-sql">CTEs · windows</span><span class="tag t-stat">Regression</span></div>
+    <div class="stage"><span class="n">7</span><b>Outputs</b>Tableau Public dashboard, 1-page memo, README, LinkedIn post, outreach emails.<br><span class="tag t-viz">Tableau</span><span class="tag t-comm">Memo</span></div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h3>Design decisions you should be able to defend</h3>
+      <table class="tight">
+        <tr><th style="width:38%">Decision</th><th>Why</th></tr>
+        <tr><td>Hourly, not daily</td><td>Postseason games are on sale for 2–7 days. A daily snapshot gives 3 points per game; hourly gives 70+. The price curve only exists at this resolution.</td></tr>
+        <tr><td>All 12 teams, not just the Yankees</td><td>If the Yankees lose in three, a NY-only project is dead on Oct 1. League-wide, elimination is a <i>finding</i>, not a failure. Also gives ~45 games instead of 3.</td></tr>
+        <tr><td>CSV in git, not a database on a server</td><td>Free, auditable, reproducible by anyone who clones the repo. Recruiters can see the data grew hour by hour. SQLite is rebuilt from the CSVs on demand.</td></tr>
+        <tr><td>Two sources, not one</td><td>Resale alone shows demand. Primary alone shows the club’s guess. The <b>gap</b> between them is the business question.</td></tr>
+        <tr><td>Giants/Jets in the background</td><td>Same scraper, different query, zero marginal cost. Becomes the December extension (a 12-week NFL price curve with a same-stadium control).</td></tr>
+        <tr><td>Regex on titles for “postseason”</td><td>Neither API has a clean postseason flag. Titles do (“ALDS”, “Home Game 2”). Pragmatic, documented in code, and a good interview story about messy real data.</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Known limits (say these before anyone asks)</h3>
+      <ul>
+        <li><b>Listings, not sales.</b> SeatGeek stats describe what’s <i>asked</i>, not what cleared. Listing count falling is the best available proxy for sales.</li>
+        <li><b>Aggregates, not sections.</b> Lowest/average/highest across the whole building. Section-level data isn’t public. Say so, then note what the club could do with its own Archtics data.</li>
+        <li><b>Fees.</b> Ticketmaster priceRanges may or may not include fees (the <span class="mono">price_type</span> field says). Compare like with like.</li>
+        <li><b>Scheduled runs can drift.</b> GitHub may delay a cron by minutes. We store the true <span class="mono">captured_at</span> and compute hours-to-game from it, so drift is harmless.</li>
+        <li><b>Time-TBD games.</b> Before a series is set, games carry placeholder times. The <span class="mono">time_tbd</span> flag lets us exclude or study them.</li>
+      </ul>
+      <h3>The repo a hiring manager will open</h3>
+      <pre>Pricing-October/
+├── README.md              question · data · method · findings · limits
+├── scrape.py              hourly collector (both APIs)
+├── build_db.py            CSV → SQLite, adds resale view
+├── analysis/
+│   ├── 01_pacing.sql      series pacing, hours-to-game curves
+│   ├── 02_gap.sql         primary vs resale gap by game
+│   ├── 03_series_state.sql price response to game outcomes
+│   └── model.ipynb        regression + charts for the memo
+├── dashboard/             Tableau Public link + screenshots
+├── memo/pricing-october.pdf
+├── data/*.csv             the append-only snapshot log
+└── .github/workflows/scrape.yml</pre>
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 3 · Architecture</span></div>
+</div>
+
+<!-- ============================================================ PAGE 4: BRACKET -->
+<div class="page">
+  <h2>2026 postseason bracket · fill it in as it happens</h2>
+  <p class="small">Seeds and records final as of Sep 27. Format: 1 and 2 seeds get byes; the 1 seed plays the 4/5 winner, the 2 seed plays the 3/6 winner. Best-of-3 · best-of-5 · best-of-7 · best-of-7. Pencil in the winner and the series score (e.g. “NYY 2–1”).</p>
+
+  <div class="col-title" style="text-align:left;color:var(--navy);font-size:9pt;margin-top:8px">American League</div>
+  <div class="bracket">
+    <div>
+      <div class="col-title">Wild Card · Sep 29–Oct 1</div>
+      <div class="slot"><span class="seed">4</span>Yankees <span class="small">93–68</span></div>
+      <div class="slot"><span class="seed">5</span>Red Sox <span class="small">87–75</span></div>
+      <div style="height:10px"></div>
+      <div class="slot"><span class="seed">3</span>Astros <span class="small">81–81</span></div>
+      <div class="slot"><span class="seed">6</span>White Sox <span class="small">84–78</span></div>
+    </div>
+    <div>
+      <div class="col-title">Division Series · Oct 3–10</div>
+      <div class="slot"><span class="seed">1</span>Rays <span class="small">98–64</span></div>
+      <div class="slot fill">WC winner · ______</div>
+      <div style="height:10px"></div>
+      <div class="slot"><span class="seed">2</span>Guardians <span class="small">85–77</span></div>
+      <div class="slot fill">WC winner · ______</div>
+    </div>
+    <div>
+      <div class="col-title">ALCS · Oct 11–20</div>
+      <div class="slot fill">ALDS winner · ______</div>
+      <div class="slot fill">ALDS winner · ______</div>
+    </div>
+    <div class="ws">
+      <div class="col-title" style="color:#7a5a12">World Series · Oct 23–31</div>
+      <div class="slot fill" style="background:#fff">AL champion · ______</div>
+      <div style="font-size:8pt;margin:3px 0">vs</div>
+      <div class="slot fill" style="background:#fff">NL champion · ______</div>
+      <div style="margin-top:6px;font-size:8.6pt"><b>Champion:</b> <span class="blank" style="min-width:110px"></span></div>
+      <div style="font-size:8pt;margin-top:3px">Games played: ___ of 7</div>
+    </div>
+    <div>
+      <div class="col-title">NLCS · Oct 11–20</div>
+      <div class="slot fill">NLDS winner · ______</div>
+      <div class="slot fill">NLDS winner · ______</div>
+    </div>
+    <div>
+      <div class="col-title">Division Series · Oct 3–10</div>
+      <div class="slot"><span class="seed">1</span>Brewers <span class="small">103–59</span></div>
+      <div class="slot fill">WC winner · ______</div>
+      <div style="height:10px"></div>
+      <div class="slot"><span class="seed">2</span>Dodgers <span class="small">100–62</span></div>
+      <div class="slot fill">WC winner · ______</div>
+    </div>
+    <div>
+      <div class="col-title">Wild Card · Sep 29–Oct 1</div>
+      <div class="slot"><span class="seed">4</span>Padres <span class="small">91–71</span></div>
+      <div class="slot"><span class="seed">5</span>Cubs <span class="small">89–73</span></div>
+      <div style="height:10px"></div>
+      <div class="slot"><span class="seed">3</span>Braves <span class="small">94–68</span></div>
+      <div class="slot"><span class="seed">6</span>Phillies <span class="small">88–74</span></div>
+    </div>
+  </div>
+  <div class="col-title" style="text-align:right;color:var(--navy);font-size:9pt;margin-top:2px">National League</div>
+
+  <div class="grid2" style="margin-top:10px">
+    <div>
+      <h3>Series tracker</h3>
+      <table class="tight">
+        <tr><th>Series</th><th style="width:16%">Winner</th><th style="width:12%">Score</th><th style="width:14%">Games</th><th>One thing the market did</th></tr>
+        <tr><td>AL WC · Red Sox at Yankees</td><td></td><td></td><td>__ of 3</td><td></td></tr>
+        <tr><td>AL WC · White Sox at Astros</td><td></td><td></td><td>__ of 3</td><td></td></tr>
+        <tr><td>NL WC · Phillies at Braves</td><td></td><td></td><td>__ of 3</td><td></td></tr>
+        <tr><td>NL WC · Cubs at Padres</td><td></td><td></td><td>__ of 3</td><td></td></tr>
+        <tr><td>ALDS · Rays vs ______</td><td></td><td></td><td>__ of 5</td><td></td></tr>
+        <tr><td>ALDS · Guardians vs ______</td><td></td><td></td><td>__ of 5</td><td></td></tr>
+        <tr><td>NLDS · Brewers vs ______</td><td></td><td></td><td>__ of 5</td><td></td></tr>
+        <tr><td>NLDS · Dodgers vs ______</td><td></td><td></td><td>__ of 5</td><td></td></tr>
+        <tr><td>ALCS</td><td></td><td></td><td>__ of 7</td><td></td></tr>
+        <tr><td>NLCS</td><td></td><td></td><td>__ of 7</td><td></td></tr>
+        <tr><td>World Series</td><td></td><td></td><td>__ of 7</td><td></td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Why the bracket is data</h3>
+      <p>Every series outcome is an event in the dataset. When the Yankees win Game 1, the Game 3 “if necessary” listing either firms up or evaporates. When a series ends in a sweep, an entire game’s worth of listings goes to zero. The tracker column on the left is your annotation layer: what you noticed as a fan becomes the caption on the dashboard.</p>
+      <h3>Watch for these moments</h3>
+      <ul>
+        <li><b>Sweep.</b> Game 3 listings the morning after a 2–0. How fast do sellers cut?</li>
+        <li><b>Forced Game 5 / Game 7.</b> The scarcest ticket of the round. Price vs. Game 1 of the same series.</li>
+        <li><b>Opponent revealed.</b> The 1-seed’s Game 1 listing exists before the opponent is known. Does the price move when it is?</li>
+        <li><b>Yankees–Red Sox.</b> Rivalry premium: compare to the other three Wild Card hosts at the same hours-to-game.</li>
+        <li><b>Weather.</b> A postponement is a natural experiment on “time to game.”</li>
+      </ul>
+      <div class="box gold" style="margin-top:6px"><b>Games actually played:</b> ____ / 45 possible. That number belongs in the memo: it’s the size of the “if necessary” problem.</div>
+    </div>
+  </div>
+      <div class="box soft" style="margin-top:8px">
+        <b>Pipeline health log</b> · once a week, from the repo’s Actions tab: number of runs, failures, and the row counts printed in the log
+        <table class="tight" style="margin-top:4px">
+          <tr><th>Week of</th><th>Runs</th><th>Failures</th><th>Rows (SeatGeek)</th><th>Rows (Ticketmaster)</th><th>Gaps noticed</th></tr>
+          <tr><td>Sep 28</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Oct 5</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Oct 12</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Oct 19</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Oct 26</td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 4 · Bracket</span></div>
+</div>
+
+<!-- ============================================================ PAGE 5: SCHEDULE -->
+<div class="page">
+  <h2 class="s5">Schedule · Sep 29 → Oct 31 · every possible game</h2>
+  <p class="small">Wild Card and Division Series dates are official (MLB.com). LCS and World Series follow MLB’s published windows; confirm exact dates on mlb.com/postseason once set. Tick when played; strike through when not needed. Note column: anything you’d want on a chart. Home field in the WS goes to the better regular-season record.</p>
+
+  <div class="grid2">
+    <div>
+      <h3>Wild Card · best of 3 · all at the higher seed</h3>
+      <table class="tight sched">
+        <tr><th style="width:4%"></th><th style="width:19%">Date</th><th>Game</th><th style="width:30%">Note</th></tr>
+        <tr><td><span class="chk"></span></td><td>Tue Sep 29</td><td>Phillies at Braves G1 · 2p ET · Truist Park</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Tue Sep 29</td><td>White Sox at Astros G1 · 5p ET · Daikin Park</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Tue Sep 29</td><td><b>Red Sox at Yankees G1 · 8p ET · Yankee Stadium</b></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Tue Sep 29</td><td>Cubs at Padres G1 · 10p ET · Petco Park</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Sep 30</td><td>Phillies at Braves G2 · 2p</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Sep 30</td><td>White Sox at Astros G2 · 5p</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Sep 30</td><td><b>Red Sox at Yankees G2 · 8p</b></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Sep 30</td><td>Cubs at Padres G2 · 10p</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Thu Oct 1</td><td>Phillies at Braves G3 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Thu Oct 1</td><td>White Sox at Astros G3 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Thu Oct 1</td><td><b>Red Sox at Yankees G3 · <i>if necessary</i></b></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Thu Oct 1</td><td>Cubs at Padres G3 · <i>if necessary</i></td><td></td></tr>
+      </table>
+
+      <h3>Division Series · best of 5 · 2-2-1 · higher seed hosts G1, G2, G5</h3>
+      <table class="tight sched">
+        <tr><th style="width:4%"></th><th style="width:19%">Date</th><th>Game</th><th style="width:30%">Note</th></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 3</td><td>ALDS A &amp; B G1 · at Rays, at Guardians</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 3</td><td>NLDS A &amp; B G1 · at Brewers, at Dodgers</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Sun Oct 4</td><td>NLDS A &amp; B G2</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Mon Oct 5</td><td>ALDS A &amp; B G2</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Tue Oct 6</td><td>NLDS A &amp; B G3 · at lower seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Oct 7</td><td>ALDS A &amp; B G3 · at lower seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Oct 7</td><td>NLDS A &amp; B G4 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Thu Oct 8</td><td>ALDS A &amp; B G4 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Fri Oct 9</td><td>NLDS A &amp; B G5 · <i>if necessary</i> · at higher seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 10</td><td>ALDS A &amp; B G5 · <i>if necessary</i> · at higher seed</td><td></td></tr>
+      </table>
+    </div>
+
+    <div>
+      <h3>LCS · best of 7 · 2-3-2 · window Oct 11–20</h3>
+      <table class="tight sched">
+        <tr><th style="width:4%"></th><th style="width:19%">Date</th><th>Game</th><th style="width:30%">Note</th></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>ALCS G1 · at higher seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>NLCS G1 · at higher seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>ALCS G2</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>NLCS G2</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>ALCS G3 · at lower seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>NLCS G3 · at lower seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>ALCS G4</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>NLCS G4</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>ALCS G5 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>NLCS G5 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>ALCS G6 · <i>if necessary</i> · at higher seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>NLCS G6 · <i>if necessary</i> · at higher seed</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>ALCS G7 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>___ Oct __</td><td>NLCS G7 · <i>if necessary</i></td><td></td></tr>
+      </table>
+
+      <h3>World Series · best of 7 · 2-3-2 · Oct 23–31</h3>
+      <table class="tight sched">
+        <tr><th style="width:4%"></th><th style="width:19%">Date</th><th>Game</th><th style="width:30%">Note</th></tr>
+        <tr><td><span class="chk"></span></td><td>Fri Oct 23</td><td>WS G1 · at ______</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 24</td><td>WS G2</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Mon Oct 26*</td><td>WS G3 · at ______</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Tue Oct 27*</td><td>WS G4</td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Oct 28*</td><td>WS G5 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Fri Oct 30*</td><td>WS G6 · <i>if necessary</i></td><td></td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 31</td><td>WS G7 · <i>if necessary</i></td><td></td></tr>
+      </table>
+      <p class="small">* Projected from MLB’s standard 2-3-2 pattern with off days after G2 and G5. G1 (Oct 23) and the G7 date (Oct 31) are published; confirm the middle dates when the WS schedule is released.</p>
+
+      <h3>Logging a game in <span class="mono">results.csv</span></h3>
+      <p class="small">One row per game, added the morning after. Cancelled “if necessary” games get a row too, with <span class="mono">played = 0</span>; those rows are the whole point.</p>
+      <table class="tight rcsv" style="margin-bottom:4px">
+        <tr><th>series</th><th>game</th><th>date</th><th>home</th><th>away</th><th>played</th><th>hw</th><th>hl</th><th>winner</th><th>note</th></tr>
+        <tr><td>ALWC1</td><td>1</td><td>2026-09-29</td><td>NYY</td><td>BOS</td><td>1</td><td>0</td><td>0</td><td>NYY</td><td></td></tr>
+        <tr><td>ALWC1</td><td>2</td><td>2026-09-30</td><td>NYY</td><td>BOS</td><td>1</td><td>1</td><td>0</td><td>BOS</td><td>rain 40m</td></tr>
+        <tr><td>ALWC1</td><td>3</td><td>2026-10-01</td><td>NYY</td><td>BOS</td><td>1</td><td>1</td><td>1</td><td>NYY</td><td></td></tr>
+        <tr><td>NLWC1</td><td>3</td><td>2026-10-01</td><td>ATL</td><td>PHI</td><td>0</td><td>2</td><td>0</td><td></td><td>sweep</td></tr>
+      </table>
+      <p class="small" style="margin:0"><span class="mono">hw / hl</span> = home team’s series wins/losses <i>going into</i> the game (what the market knew). Use full team names in the real file so they join to SeatGeek’s <span class="mono">home_team</span>. <span class="mono">note</span>: anything a chart caption might want.</p>
+
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 5 · Schedule</span></div>
+</div>
+
+<!-- ============================================================ PAGE 6: DATA DICTIONARY -->
+<div class="page">
+  <h2>Data dictionary · what one row means</h2>
+  <p class="lead">A hiring manager’s first question about any dataset is “what’s the grain?” Answer: <b>one row per game per hour per source.</b> Everything below hangs off that.</p>
+
+  <div class="grid2">
+    <div>
+      <h3>Table <span class="mono">seatgeek</span> · resale market</h3>
+      <table class="tight">
+        <tr><th style="width:30%">Column</th><th style="width:14%">Type</th><th>Meaning</th></tr>
+        <tr><td class="mono">captured_at</td><td>TEXT (ISO)</td><td>UTC timestamp of the snapshot. Part of the key.</td></tr>
+        <tr><td class="mono">bucket</td><td>TEXT</td><td><span class="mono">mlb_postseason</span> or <span class="mono">nfl_metlife</span></td></tr>
+        <tr><td class="mono">event_id</td><td>TEXT</td><td>SeatGeek’s stable id for the game. Part of the key.</td></tr>
+        <tr><td class="mono">title</td><td>TEXT</td><td>e.g. “ALDS: Yankees at Rays – Home Game 1 (If Necessary)”. Round and if-necessary are parsed from here.</td></tr>
+        <tr><td class="mono">datetime_local</td><td>TEXT</td><td>Scheduled first pitch, venue local time. Basis for hours_to_game.</td></tr>
+        <tr><td class="mono">time_tbd</td><td>BOOL</td><td>True while the start time is a placeholder.</td></tr>
+        <tr><td class="mono">home_team / away_team</td><td>TEXT</td><td>From the performers array (home_team flag). Away is null until the opponent is set.</td></tr>
+        <tr><td class="mono">listing_count</td><td>REAL</td><td>Number of active resale listings. Our demand/supply proxy.</td></tr>
+        <tr><td class="mono">lowest_price</td><td>REAL</td><td>Cheapest listing, USD. The “get-in” price.</td></tr>
+        <tr><td class="mono">average_price</td><td>REAL</td><td>Mean of listings.</td></tr>
+        <tr><td class="mono">median_price</td><td>REAL</td><td>Median of listings. Use this in the memo (robust to a $5,000 dugout seat).</td></tr>
+        <tr><td class="mono">highest_price</td><td>REAL</td><td>Most expensive listing.</td></tr>
+      </table>
+
+      <h3>Table <span class="mono">ticketmaster</span> · primary market</h3>
+      <table class="tight">
+        <tr><th style="width:30%">Column</th><th style="width:14%">Type</th><th>Meaning</th></tr>
+        <tr><td class="mono">captured_at</td><td>TEXT</td><td>Same clock as above; lets the two tables join on the hour.</td></tr>
+        <tr><td class="mono">event_id</td><td>TEXT</td><td>Ticketmaster’s id. <b>Does not match SeatGeek’s.</b> Join on (home_team, local_date) instead.</td></tr>
+        <tr><td class="mono">name</td><td>TEXT</td><td>Club’s event name, e.g. “ALDS Home Game 2: Yankees v. TBD”.</td></tr>
+        <tr><td class="mono">local_date / local_time</td><td>TEXT</td><td>Scheduled date and time.</td></tr>
+        <tr><td class="mono">status</td><td>TEXT</td><td><span class="mono">onsale · offsale · cancelled · postponed · rescheduled</span>. “Cancelled” is how an unneeded Game 5 dies.</td></tr>
+        <tr><td class="mono">price_type</td><td>TEXT</td><td>“standard” or “standard including fees”. Compare like with like.</td></tr>
+        <tr><td class="mono">min_price / max_price</td><td>REAL</td><td>The club’s posted price range. min_price vs resale lowest_price is the gap.</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <h3>Derived fields (built in SQL, not stored)</h3>
+      <table class="tight">
+        <tr><th style="width:32%">Field</th><th>Definition</th></tr>
+        <tr><td class="mono">hours_to_game</td><td><span class="mono">(julianday(datetime_local) − julianday(captured_at)) × 24</span>. The x-axis of every price curve.</td></tr>
+        <tr><td class="mono">round</td><td>CASE on title: Wild Card / ALDS / NLDS / ALCS / NLCS / World Series.</td></tr>
+        <tr><td class="mono">if_necessary</td><td>title LIKE ‘%If Necessary%’. The core flag of the project.</td></tr>
+        <tr><td class="mono">series_state</td><td>Home team’s series record at capture time, joined from a small hand-maintained <span class="mono">results.csv</span> you fill from the bracket page. Values like “1-0”, “0-2”, “tied 2-2”.</td></tr>
+        <tr><td class="mono">was_played</td><td>1 if the game happened; 0 if cancelled. From results.csv.</td></tr>
+        <tr><td class="mono">gap_pct</td><td><span class="mono">(resale_lowest − primary_min) / primary_min</span>. Positive = market values it above the club’s floor.</td></tr>
+        <tr><td class="mono">listing_delta_24h</td><td>Window function: listing_count minus its value 24 rows earlier for the same event. Sales velocity proxy.</td></tr>
+      </table>
+
+      <h3>The one file you maintain by hand</h3>
+      <p><span class="mono">data/results.csv</span> · one row per game · columns: <span class="mono">series, game_no, date, home, away, played (1/0), home_w_before, home_l_before, winner, note</span>. Fill it from the bracket page after each game. It’s tiny (≤45 rows), and it’s what turns a price log into an event study. Recruiters like seeing a human-curated dimension table next to machine-collected facts; it shows you know the difference.</p>
+
+      <h3>Volume estimate</h3>
+      <table class="tight">
+        <tr><th>Quantity</th><th style="width:30%">Estimate</th></tr>
+        <tr><td>Postseason games listed at any one time</td><td>10–30</td></tr>
+        <tr><td>Snapshots per day (both sources)</td><td>24 × 2</td></tr>
+        <tr><td>Rows per day</td><td>~600–1,500</td></tr>
+        <tr><td>Rows by Nov 1</td><td>~30,000–50,000</td></tr>
+        <tr><td>CSV size by Nov 1</td><td>~8–15 MB</td></tr>
+        <tr><td>Giants/Jets background rows</td><td>~10/hour, ~25,000 by January</td></tr>
+      </table>
+      <p class="small">Small enough for SQLite and Tableau Public with no tricks. Big enough that you can’t eyeball it, which is the point.</p>
+
+      <div class="box navy" style="margin-top:8px">
+        <h3 style="margin-top:0">Interview line</h3>
+        <p style="color:#e8eef6;margin:0">“The grain is game-hour. Facts come from two APIs on an hourly cron; the one dimension I couldn’t get from an API, series state, I maintained by hand and joined in. That’s the same shape as a team’s warehouse: Archtics facts, a hand-kept event calendar.”</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 6 · Data dictionary</span></div>
+</div>
+
+<!-- ============================================================ PAGE 7: ANALYSIS PLAN -->
+<div class="page">
+  <h2>Analysis plan · seven questions, each with a method and a skill</h2>
+  <p class="lead">Ordered from “works with three days of data” to “needs the whole postseason.” Q1–Q3 are done by Fall Break; Q4–Q6 need the LCS; Q7 is the memo’s headline. For a hiring manager: Q1 is the chart they’ll remember, Q3 the number they’ll quote, Q5 the one they’ll argue with, Q7 the proof you can model.</p>
+
+  <table>
+    <tr><th style="width:3%">#</th><th style="width:24%">Question</th><th style="width:33%">Method</th><th style="width:22%">Output</th><th>Skill proved</th></tr>
+    <tr><td>1</td><td><b>The decay curve.</b> How does the get-in price move from 72 hours out to first pitch?</td><td>Median lowest_price by hours_to_game bucket (72/48/24/12/6/3/1), per round. Plot every game as a faint line, the median as a bold one.</td><td>“Price curve” chart. First finding by Oct 2.</td><td><span class="tag t-sql">GROUP BY · CASE</span><span class="tag t-viz">Line chart</span></td></tr>
+    <tr><td>2</td><td><b>The rivalry premium.</b> Was Yankees–Red Sox priced above the other three Wild Card hosts at the same hours-to-game?</td><td>Same-hour comparison across the four WC series. Ratio of NYY median to the mean of the other three, by hour.</td><td>One number (“1.9× at 24h out”) plus a small multiple chart.</td><td><span class="tag t-sql">Self-join</span><span class="tag t-biz">Matchup pricing</span></td></tr>
+    <tr><td>3</td><td><b>The “if necessary” discount.</b> How much cheaper is a Game 3/5/7 listing than a guaranteed game in the same series, before anyone knows it’ll happen?</td><td>Pair each if-necessary game with Game 1 of its series at matched hours-to-game. Compute discount %. Then track what happens once the game becomes certain or dies.</td><td>Discount table by round. The project’s signature stat.</td><td><span class="tag t-sql">CTEs · matched pairs</span><span class="tag t-stat">Uncertainty pricing</span></td></tr>
+    <tr><td>4</td><td><b>Series-state elasticity.</b> After a home win in Game 1, what happens to Game 2 listings overnight? After a loss?</td><td>Join results.csv. Compare median price and listing_count 2 hours before Game 1 vs 8 hours after, split by outcome. Window function for the “before/after” lag.</td><td>Before/after bar chart. Interview story about event studies.</td><td><span class="tag t-sql">LAG · windows</span><span class="tag t-stat">Event study</span></td></tr>
+    <tr><td>5</td><td><b>The primary-vs-resale gap.</b> Where did the club price below the market, and by how much?</td><td>Join ticketmaster to seatgeek on (home_team, date, hour). gap_pct by game and round. Rank games by gap.</td><td>Ranked table + gap heat map (team × round).</td><td><span class="tag t-sql">Cross-source join</span><span class="tag t-biz">Dynamic pricing</span></td></tr>
+    <tr><td>6</td><td><b>Sell-through velocity.</b> Does the listing count fall faster for some games, and does price rise when it does?</td><td>listing_delta_24h via window function; correlate with next-hour price change. Simple, honest about causality.</td><td>Scatter + correlation. A “velocity” view on the dashboard.</td><td><span class="tag t-sql">Window functions</span><span class="tag t-stat">Correlation</span></td></tr>
+    <tr><td>7</td><td><b>What explains price?</b> One model, all games.</td><td>OLS on log(median_price): hours_to_game (log), round, if_necessary, home_seed, series_state, rivalry flag, weekend, home market size (MSA population). statsmodels, robust SEs, clustered by game.</td><td>Coefficient table with plain-English translation. The memo’s “so what.”</td><td><span class="tag t-py">pandas · statsmodels</span><span class="tag t-stat">Regression · inference</span></td></tr>
+  </table>
+
+  <h3>Findings template · write the sentence before you have the number</h3>
+  <p class="small">One sentence, one number, one comparison. Draft with blanks on Oct 9, fill on Nov 1. If the data disagrees with you, that’s a better finding, not a failure.</p>
+  <table class="tight">
+    <tr><th style="width:4%">Q</th><th style="width:44%">Expected sentence</th><th>If the data disagrees, the sentence becomes…</th></tr>
+    <tr><td>1</td><td>“Get-in prices fell ___% from 48 hours out to first pitch, and ___% of that drop came in the final 6 hours.”</td><td>“Prices <i>rose</i> into first pitch for ___ of ___ games: sellers held, buyers blinked. Clubs pricing to the 48-hour market underpriced.”</td></tr>
+    <tr><td>2</td><td>“Yankees–Red Sox Game 1 traded at ___× the median of the other three Wild Card hosts at the same hour.”</td><td>“The rivalry premium was smaller than the seed premium: ___ at ___× beat NYY. Matchup matters less than home record.”</td></tr>
+    <tr><td>3</td><td>“‘If necessary’ listings were ___% cheaper than Game 1 of the same series until the game was confirmed, then re-rated within ___ hours.”</td><td>“The market priced if-necessary games at near parity (___% discount): sellers already assumed a long series. Clubs can price them as certain.”</td></tr>
+    <tr><td>4</td><td>“A home win in Game 1 lifted Game 2 median prices ___% overnight; a loss cut them ___%.”</td><td>“Game 1 results barely moved Game 2 prices (±___%): demand is for the event, not the standings. Series-state pricing isn’t worth the complexity.”</td></tr>
+    <tr><td>5</td><td>“At 24 hours out, the resale floor sat ___% above the club floor for ___ of ___ games, largest for ___.”</td><td>“Resale floors sat <i>below</i> primary for ___ games: clubs overpriced late inventory and the secondary market cleared it cheaper.”</td></tr>
+    <tr><td>6</td><td>“Games that lost ___% of listings in 24 hours saw prices rise ___% the following hour.”</td><td>“Listing counts fell without prices rising: sellers de-listed rather than sold. Listing count is a weak sales proxy here; say so.”</td></tr>
+    <tr><td>7</td><td>“Holding round and time constant, if-necessary cost ___%, rivalry added ___%, and each series win added ___%.”</td><td>Report near-zero coefficients honestly, with the interval. “Can’t distinguish from zero with one postseason” is a fine sentence.</td></tr>
+  </table>
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 7 · Analysis plan</span></div>
+</div>
+
+
+<!-- ============================================================ PAGE 8: THE MODEL -->
+<div class="page">
+  <h2>The model · one regression, explained in dollars</h2>
+  <p class="lead">Q7 from the analysis plan: the part that separates “I made a dashboard” from “I can tell you what drives price.” One model, every choice defended, every coefficient translated into a ticket.</p>
+  <div class="grid2 wide-left" style="margin-top:6px">
+    <div>
+      <h3>The regression, sketched</h3>
+      <pre>import pandas as pd, numpy as np, sqlite3
+import statsmodels.formula.api as smf
+
+con = sqlite3.connect("data/pricing.db")
+df = pd.read_sql("""
+  SELECT r.*, s.home_w_before AS w,
+         s.home_l_before AS l, s.played
+  FROM resale r
+  LEFT JOIN results s
+    ON s.home = r.home_team AND s.date = date(r.datetime_local)
+  WHERE r.bucket = 'mlb_postseason'
+    AND r.hours_to_game BETWEEN 1 AND 168
+""", con)
+
+df["log_p"]  = np.log(df.median_price)
+df["log_h"]  = np.log(df.hours_to_game)
+df["ifnec"]  = df.title.str.contains("If Necessary").astype(int)
+rounds = r"(Wild Card|ALDS|NLDS|ALCS|NLCS|World Series)"
+df["round"]  = df.title.str.extract(rounds)
+nyy = df.home_team.eq("New York Yankees")
+bos = df.away_team.eq("Boston Red Sox")
+df["rival"]  = (nyy & bos).astype(int)
+
+m = smf.ols("log_p ~ log_h + C(round) + ifnec + rival + w + l",
+            data=df).fit(cov_type="cluster",
+                         cov_kwds={"groups": df.event_id})
+print(m.summary())
+# ifnec = -0.35  →  "if necessary" listings ~30% cheaper, all else equal</pre>
+    </div>
+    <div>
+      <h3>How to read a coefficient out loud</h3>
+      <p>On a log-price model, a coefficient of −0.35 on <span class="mono">ifnec</span> means an “if necessary” listing is about 30% cheaper than a guaranteed game in the same round at the same hours-to-game (e<sup>−0.35</sup> ≈ 0.70). Say it that way in the memo. Never say “statistically significant” without saying what the number means for a ticket.</p>
+      <h3>What makes this more than a class project</h3>
+      <ul>
+        <li><b>Clustered standard errors by game.</b> 70 hourly rows of one game aren’t 70 independent observations. Knowing that is the difference between a BA student and an analyst.</li>
+        <li><b>Log-log on hours.</b> Turns “price falls as the game nears” into an elasticity a pricing manager can use.</li>
+        <li><b>A hand-built dimension (series state).</b> Shows you understand data modeling, not just querying.</li>
+        <li><b>Limits stated first.</b> Listings ≠ sales; building-level aggregates; one postseason. Then the recommendation anyway.</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <h3>Variables, and why each one is in</h3>
+  <table class="tight">
+    <tr><th style="width:18%">Variable</th><th style="width:34%">Definition</th><th>Why it belongs · what you expect</th></tr>
+    <tr><td class="mono">log_h</td><td>log(hours to first pitch)</td><td>Time-to-event is the dominant driver of resale prices. Log form makes the coefficient an elasticity: “a 10% cut in time left moves price X%.” Expect negative.</td></tr>
+    <tr><td class="mono">C(round)</td><td>Wild Card / DS / LCS / WS</td><td>Stakes rise by round. Fixed effects absorb that so the other coefficients aren’t just “the World Series is expensive.” Expect monotonic increase.</td></tr>
+    <tr><td class="mono">ifnec</td><td>1 if the title says “If Necessary”</td><td>The project’s headline variable: the uncertainty discount. Expect −0.2 to −0.5 (20–40% cheaper).</td></tr>
+    <tr><td class="mono">rival</td><td>1 for Yankees–Red Sox</td><td>The rivalry premium, controlled for round and time. Expect positive; the size is the finding.</td></tr>
+    <tr><td class="mono">w, l</td><td>Home team’s series wins / losses before this game</td><td>Series state. A team down 0–2 hosting Game 3 is a different product than one up 2–0. Expect w positive, l negative, and larger in magnitude late in the series.</td></tr>
+  </table>
+  <div class="grid2" style="margin-top:6px">
+    <div class="box soft">
+      <h3 style="margin-top:0">Checks you run before you believe it</h3>
+      <ul>
+        <li>Plot residuals vs hours_to_game: if there’s a curve, add <span class="mono">log_h²</span>.</li>
+        <li>Drop the World Series and re-fit: do the signs hold?</li>
+        <li>Swap median for lowest price: same story?</li>
+        <li>Cluster by game (done) and by series: do the standard errors change much?</li>
+      </ul>
+    </div>
+    <div class="box soft">
+      <h3 style="margin-top:0">What you say if someone asks “why not machine learning?”</h3>
+      <p style="margin:0">“The goal was a number a pricing manager can act on, not the best predictor. Log-linear gives an interpretable elasticity and a clean uncertainty discount. For a forecast I’d try the same features in a gradient-boosted model and compare out-of-sample error.” That answer gets you hired more often than a random forest does.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 8 · The model</span></div>
+</div>
+
+<!-- ============================================================ PAGE 9: SQL LADDER -->
+<div class="page sql">
+  <h2>The SQL you will write · in the order you’re learning it</h2>
+  <p class="lead">Your game plan has you at basic SELECT/JOIN now, CTEs by Oct 21, window functions by Oct 28. This page lines the project’s queries up against that path, so every lesson lands on real data the same week.</p>
+
+  <div class="grid2">
+    <div>
+      <h3>Week of Sep 28 · SELECT · WHERE · GROUP BY</h3>
+      <pre>-- Q0: is the pipeline healthy? rows per hour, last 24 h
+SELECT substr(captured_at, 1, 13) AS hour,
+       COUNT(*)                   AS games,
+       SUM(lowest_price IS NULL)  AS missing_price
+FROM   seatgeek
+WHERE  bucket = 'mlb_postseason'
+  AND  captured_at >= datetime('now', '-1 day')
+GROUP  BY 1 ORDER BY 1;</pre>
+      <pre>-- Q1: get-in price by hours-to-game bucket, by round
+SELECT CASE WHEN title LIKE '%Wild Card%' THEN 'WC'
+            WHEN title LIKE '%LDS%'       THEN 'DS'
+            WHEN title LIKE '%LCS%'       THEN 'LCS'
+            WHEN title LIKE '%World Series%' THEN 'WS'
+       END AS round,
+       CASE WHEN hours_to_game > 48 THEN '48h+'
+            WHEN hours_to_game > 24 THEN '24-48h'
+            WHEN hours_to_game > 6  THEN '6-24h'
+            ELSE '0-6h' END AS bucket,
+       COUNT(*) AS n, ROUND(AVG(lowest_price)) AS avg_get_in
+FROM   resale
+GROUP  BY 1, 2 ORDER BY 1, 2;</pre>
+
+      <h3>Fall Break Oct 8–9 · JOIN · subqueries</h3>
+      <pre>-- Q2: Yankees-Red Sox vs the other three WC hosts, same hour
+SELECT a.captured_at,
+       a.lowest_price                       AS nyy,
+       ROUND(AVG(b.lowest_price))           AS others,
+       ROUND(a.lowest_price / AVG(b.lowest_price), 2)
+         AS ratio
+FROM   resale a
+JOIN   resale b
+  ON   b.captured_at = a.captured_at
+ AND   b.title LIKE '%Wild Card%'
+ AND   b.home_team <> a.home_team
+WHERE  a.home_team = 'New York Yankees'
+  AND  a.title LIKE '%Wild Card%Game 1%'
+GROUP  BY a.captured_at ORDER BY 1;</pre>
+      <pre>-- Q5: primary vs resale gap, per game, latest snapshot
+SELECT s.home_team, date(s.datetime_local) AS game_date,
+       t.min_price                          AS club_floor,
+       s.lowest_price                       AS market_floor,
+       ROUND(100.0 * (s.lowest_price - t.min_price)
+             / t.min_price, 1) AS gap_pct
+FROM   resale s
+JOIN   ticketmaster t
+  ON   t.local_date = date(s.datetime_local)
+ AND   t.name LIKE '%' || substr(s.home_team,
+                 instr(s.home_team,' ')+1) || '%'
+ AND   substr(t.captured_at,1,13)
+     = substr(s.captured_at,1,13)
+WHERE  s.captured_at = (SELECT MAX(captured_at)
+                        FROM resale)
+ORDER  BY gap_pct DESC;</pre>
+    </div>
+
+    <div>
+      <h3>Week of Oct 19 · CTEs</h3>
+      <pre>-- Q3: "if necessary" discount vs Game 1, matched on hours
+WITH g AS (
+  SELECT event_id, home_team, title,
+         title LIKE '%If Necessary%'        AS ifnec,
+         CAST(hours_to_game AS INT) / 6 * 6 AS h6, -- 6h bins
+         median_price
+  FROM   resale WHERE hours_to_game BETWEEN 1 AND 72
+),
+g1 AS (
+  SELECT home_team, h6, AVG(median_price) AS p_game1
+  FROM   g WHERE title LIKE '%Game 1%' GROUP BY 1, 2
+)
+SELECT g.home_team, g.h6,
+       ROUND(AVG(g.median_price)) AS p_ifnec,
+       ROUND(g1.p_game1)          AS p_game1,
+       ROUND(100.0 * (AVG(g.median_price) - g1.p_game1)
+             / g1.p_game1, 1) AS discount_pct
+FROM   g JOIN g1 USING (home_team, h6)
+WHERE  g.ifnec = 1
+GROUP  BY 1, 2 ORDER BY 1, 2;</pre>
+
+      <h3>Week of Oct 26 · window functions</h3>
+      <pre>-- Q6: sell-through velocity: listings vs 24h earlier
+WITH w AS (
+  SELECT event_id, home_team, captured_at, hours_to_game,
+         listing_count, median_price,
+         LAG(listing_count, 24) OVER (PARTITION BY event_id
+             ORDER BY captured_at) AS lc_24h_ago,
+         LAG(median_price, 1) OVER (PARTITION BY event_id
+             ORDER BY captured_at) AS p_prev
+  FROM   resale
+)
+SELECT home_team, captured_at,
+       listing_count - lc_24h_ago AS listings_delta_24h,
+       ROUND(100.0 * (median_price - p_prev) / p_prev, 2)
+         AS price_chg_pct,
+       RANK() OVER (PARTITION BY substr(captured_at,1,10)
+                    ORDER BY listing_count - lc_24h_ago)
+         AS fastest_seller_today
+FROM   w
+WHERE  lc_24h_ago IS NOT NULL
+ORDER  BY captured_at DESC, fastest_seller_today;</pre>
+      <pre>-- Q4: Game 2 price before/after the Game 1 result
+WITH r AS (
+  SELECT s.*, x.winner = x.home AS home_won
+  FROM   resale s
+  JOIN   results x
+    ON   x.home = s.home_team AND x.game_no = 1
+   AND   s.title LIKE '%Game 2%'
+), t AS (
+  SELECT home_team, home_won,
+         AVG(CASE WHEN hours_to_game BETWEEN 26 AND 28
+                  THEN median_price END) AS before_g1,
+         AVG(CASE WHEN hours_to_game BETWEEN 14 AND 16
+                  THEN median_price END) AS after_g1
+  FROM   r GROUP BY 1, 2
+)
+SELECT home_won, COUNT(*) AS series,
+       ROUND(AVG(100.0 * (after_g1 - before_g1) / before_g1), 1)
+         AS avg_move_pct
+FROM   t GROUP BY 1;</pre>
+      <p class="small" style="margin-top:2px">Save each under <span class="mono">analysis/</span> with the question and, later, the answer as a comment. That folder is what you walk a hiring manager through.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 9 · SQL ladder</span></div>
+</div>
+
+<!-- ============================================================ PAGE 9: DASHBOARD SPEC -->
+<div class="page">
+  <h2>Dashboard spec · Tableau Public · four views, one story</h2>
+  <p class="lead">A dashboard is an argument, not a gallery. Four views, top-left to bottom-right, each answering the question the previous one raises. One data source: <span class="mono">resale</span> joined to <span class="mono">results</span>, exported from SQLite as a single CSV.</p>
+
+  <div class="grid2" style="margin-top:6px">
+    <div class="box" style="min-height:2.2in">
+      <div class="kicker">View 1 · top left</div>
+      <b>The decay curve</b>
+      <p class="small">Line chart. X = hours to first pitch (reversed, 72 → 0). Y = median get-in price. One faint line per game, bold median per round, colored by round. Annotations: “Yankees–Red Sox G1”, “Game 3 cancelled”.</p>
+      <p class="small"><b>Question it answers:</b> when should a fan buy, and when should a club reprice?</p>
+      <div style="border:1px dashed #9aa4b0;height:0.9in;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9aa4b0;font-size:8pt">line chart · hours-to-game × price</div>
+    </div>
+    <div class="box" style="min-height:2.2in">
+      <div class="kicker">View 2 · top right</div>
+      <b>The “if necessary” discount</b>
+      <p class="small">Bar chart by round: median discount of if-necessary listings vs Game 1 of the same series, at matched hours-to-game. Second bar: what those listings did once the game was confirmed (or cancelled).</p>
+      <p class="small"><b>Question it answers:</b> how much does uncertainty cost, and who bears it?</p>
+      <div style="border:1px dashed #9aa4b0;height:0.9in;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9aa4b0;font-size:8pt">grouped bars · round × discount %</div>
+    </div>
+    <div class="box" style="min-height:2.2in">
+      <div class="kicker">View 3 · bottom left</div>
+      <b>The gap map</b>
+      <p class="small">Heat map: teams (rows) × rounds (columns), cell = primary-vs-resale gap % at 24 hours out. Red = market above club floor by a lot. Tooltip shows club floor, market floor, listing count.</p>
+      <p class="small"><b>Question it answers:</b> where did clubs leave money on the table?</p>
+      <div style="border:1px dashed #9aa4b0;height:0.9in;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9aa4b0;font-size:8pt">heat map · team × round</div>
+    </div>
+    <div class="box" style="min-height:2.2in">
+      <div class="kicker">View 4 · bottom right</div>
+      <b>Series state</b>
+      <p class="small">Before/after dumbbell chart: each Game 2, price 27 h before Game 1 vs 15 h after, colored by whether the home team won Game 1. Small, honest, memorable.</p>
+      <p class="small"><b>Question it answers:</b> does last night’s score move today’s price?</p>
+      <div style="border:1px dashed #9aa4b0;height:0.9in;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9aa4b0;font-size:8pt">dumbbell · before vs after, by outcome</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:10px">
+    <div>
+      <h3>Rules for the build</h3>
+      <ul>
+        <li><b>One headline per view</b>, written as a sentence in the title: “Get-in prices fall 40% in the last 24 hours,” not “Price vs Time.”</li>
+        <li><b>Filters:</b> round, team, if-necessary. Nothing else. Three filters is a dashboard; ten is a spreadsheet.</li>
+        <li><b>Median, not mean,</b> for price. State it in a footnote.</li>
+        <li><b>Color = round</b> everywhere, same palette in all four views and in the memo charts.</li>
+        <li><b>A “how to read this” caption</b> under each view, one line, for the person who’s never seen a dumbbell chart.</li>
+        <li><b>Source line:</b> “SeatGeek Platform API and Ticketmaster Discovery API, hourly snapshots Sep 28 – Nov 1, 2026. Listings, not sales.”</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Build order</h3>
+      <table class="tight">
+        <tr><th style="width:24%">When</th><th>Do</th></tr>
+        <tr><td>Fri Oct 16</td><td>Tableau Public account. Export <span class="mono">resale</span> to CSV. Connect. View 1 (the decay curve). Publish it even if it’s ugly.</td></tr>
+        <tr><td>Sat Oct 17</td><td>View 2 and View 3. Dashboard layout, filters, titles as sentences.</td></tr>
+        <tr><td>Sat Oct 24</td><td>View 4 once the LCS has given you enough Game 2s. Captions, source line, final palette.</td></tr>
+        <tr><td>Wed Nov 18</td><td>Rebuild the same four views in Power BI (already in your plan). Same story, second tool, one more line on the resume.</td></tr>
+      </table>
+      <h3>Screenshot checklist for the README</h3>
+      <ul>
+        <li>Full dashboard, 1600 px wide, light background</li>
+        <li>Each view alone, cropped, with its sentence-title visible</li>
+        <li>One GIF of the round filter changing (optional, 5 seconds)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 10 · Dashboard spec</span></div>
+</div>
+
+<!-- ============================================================ PAGE 10: MEMO + OUTREACH -->
+<div class="page">
+  <h2>The memo and the outreach · where the project earns its keep</h2>
+  <p class="lead">Analysts who get hired write one page that a VP reads in four minutes and forwards. Here is that page’s skeleton, and the three messages that carry it to the people you want to work for.</p>
+
+  <div class="grid2">
+    <div>
+      <h3>Memo · one page · “Pricing October”</h3>
+      <div class="box soft">
+        <p><b>To:</b> VP, Ticketing Strategy &amp; Analytics &nbsp;·&nbsp; <b>From:</b> Michael Schwartz &nbsp;·&nbsp; <b>Date:</b> Nov 2, 2026<br><b>Re:</b> What the resale market told us about postseason pricing, and three things to do about it</p>
+        <p><b>Bottom line (3 lines).</b> The finding, the number, the recommendation. Written last, placed first.</p>
+        <p><b>Question (2 lines).</b> How does the market price games that may not happen, and where is our floor below theirs?</p>
+        <p><b>Data (3 lines).</b> Hourly snapshots, two sources, dates, games, rows. Listings not sales. Building-level aggregates.</p>
+        <p><b>Method (3 lines).</b> Matched comparisons at equal hours-to-game; one regression with clustered errors. Plain words.</p>
+        <p><b>Findings (3 bullets, one chart each).</b> The decay curve. The if-necessary discount. The gap map.</p>
+        <p><b>Limits (3 bullets).</b> Say them before they’re asked.</p>
+        <p><b>Recommendations (3 bullets, each with a number).</b> e.g. “Hold if-necessary inventory off primary sale until the series state is known; the market discounts it 30% and re-rates it within 6 hours of certainty.”</p>
+        <p style="margin:0"><b>Appendix link.</b> Dashboard, repo, regression table.</p>
+      </div>
+      <h3>Memo rules</h3>
+      <ul>
+        <li>Every number has a comparison next to it. “$212” means nothing; “$212, 1.9× the other Wild Card hosts at the same hour” does.</li>
+        <li>No jargon a season-ticket rep wouldn’t use. “Elasticity” is fine if the next clause says what it means.</li>
+        <li>Charts are the ones from the dashboard, cropped, with the sentence-titles. No new charts in the memo.</li>
+        <li>Recommendations are things a club can actually do next October. Not “collect more data.”</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Message 1 · Project-led outreach (Template H, adapted) · Nov 3–5</h3>
+      <div class="box">
+        <p class="small" style="margin-bottom:3px"><b>Subject:</b> A student’s look at postseason ticket pricing (2-min read)</p>
+        <p class="small">Hi [Name], I’m a junior in Business Analytics at Auburn. As a learning exercise I tracked resale and primary prices for every 2026 postseason game, hourly, from the Wild Card round through the World Series: [dashboard link]. One finding: “if necessary” listings traded about [X]% below guaranteed games in the same series until the night before, then re-rated within hours. Your internal data surely tells a fuller story. I’d value your critique of the approach, even one line. Thank you, Michael · [LinkedIn] · [repo]</p>
+      </div>
+      <p class="small">Send to: Mets Ticketing Strategy &amp; Analytics (Manahan’s group, analysts first), Yankees Business Strategy, MLB League Office Analytics &amp; Strategy, Braves Business Strategy &amp; Analytics, Rays Strategy &amp; Analytics. Then any team whose games are in the dashboard. Stagger: no two people at the same club on the same day.</p>
+
+      <h3>Message 2 · LinkedIn post · Nov 2</h3>
+      <div class="box">
+        <p class="small">I spent October collecting a dataset instead of just watching baseball. Every hour, for every postseason game, I logged resale and primary ticket prices (two public APIs, a Python script, GitHub Actions doing the work while I was in class). ~40,000 rows later, three things stood out: [finding 1 with number] · [finding 2] · [finding 3]. Dashboard and code in the comments. Built with SQL, Python and Tableau; happy to hear where the method is wrong. #SportsBusiness #Analytics @Auburn Sports Analytics Club</p>
+      </div>
+
+      <h3>Message 3 · Application add-on (Template F) · Dec</h3>
+      <div class="box">
+        <p class="small">…I recently built an hourly pricing dataset for the 2026 MLB postseason (two APIs, SQL, a regression, Tableau) and wrote it up as a one-page memo on if-necessary inventory. It lines up with the posting’s ticketing analytics work: [link].</p>
+      </div>
+
+      <div class="box gold" style="margin-top:8px">
+        <b>The ask that matters most:</b> after any reply, “Who else should I talk to?” Every October analyst knows three others. The project is the door; that question is the hallway.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 11 · Memo and outreach</span></div>
+</div>
+
+<!-- ============================================================ PAGE 11: SKILLS MATRIX -->
+<div class="page">
+  <h2>Skills matrix · what a recruiter wants to see, and where this project shows it</h2>
+  <p class="lead">Built from the actual postings on your target list (Colts, Stars, Nationals, Rays, Charlotte FC, Texans, Jaguars, Heat) and the NBA/NFL/MLB league programs. Left column is their language. Right column is your proof.</p>
+
+  <table class="skills">
+    <tr><th>What postings ask for</th><th style="width:36%">Where the project proves it</th><th style="width:26%">The artifact you point to</th><th style="width:16%">Resume line</th></tr>
+    <tr><td>SQL (required in nearly every posting)</td><td>Six saved queries from GROUP BY to window functions on a 40k-row table you built. Cross-source join on messy keys.</td><td><span class="mono">analysis/*.sql</span></td><td>“SQL (SQLite): CTEs, window functions”</td></tr>
+    <tr><td>Python / R</td><td>Collector (requests, JSON flattening, error handling), loader (sqlite3), model (pandas, statsmodels).</td><td><span class="mono">scrape.py · build_db.py · model.ipynb</span></td><td>“Python: pandas, statsmodels, requests”</td></tr>
+    <tr><td>Tableau / Power BI</td><td>Four-view public dashboard with sentence titles; rebuilt in Power BI Nov 18.</td><td>Tableau Public link · Power BI screenshots</td><td>“Tableau Public, Power BI”</td></tr>
+    <tr><td>Ticketing &amp; pricing analytics</td><td>Primary vs resale gap, decay curve, if-necessary inventory, series-state repricing. The vocabulary of a ticketing strategy group.</td><td>Memo findings 1–3</td><td>“Ticket pricing analysis: primary vs secondary”</td></tr>
+    <tr><td>CRM / data warehouse concepts</td><td>Fact tables from APIs + a hand-kept dimension (results.csv), explicit grain, indexes, a view layer. Same shape as Archtics → warehouse.</td><td>Data dictionary in README</td><td>“Designed fact/dimension schema”</td></tr>
+    <tr><td>Data collection / ETL</td><td>Hourly unattended pipeline for five weeks; append-only log; rebuildable database.</td><td>Actions run history (hundreds of green checks)</td><td>“Built hourly ETL pipeline (GitHub Actions)”</td></tr>
+    <tr><td>Statistics / modeling</td><td>Matched comparisons, event study, OLS with clustered SEs, coefficients translated to dollars.</td><td>Regression table in memo appendix</td><td>“Regression modeling of ticket prices”</td></tr>
+    <tr><td>Reporting to non-technical stakeholders</td><td>One-page memo to a VP; dashboard captions; LinkedIn post that a fan understands.</td><td><span class="mono">memo/pricing-october.pdf</span></td><td>“Executive memo and dashboard”</td></tr>
+    <tr><td>Attention to detail</td><td>Fees flag handled; time-TBD flag handled; cron drift handled; listings-vs-sales stated up front.</td><td>Limits section, README</td><td>(shows in interview)</td></tr>
+    <tr><td>Self-direction / “projects taken start to finish”</td><td>Question → pipeline → analysis → memo → outreach, alone, on a deadline set by the World Series.</td><td>The repo’s commit history</td><td>“Independent project, Sep–Nov 2026”</td></tr>
+    <tr><td>Passion for the industry (without talking like a fan)</td><td>You spent October measuring the market instead of arguing about the bullpen. Talk revenue, inventory, fans-as-customers.</td><td>The LinkedIn post’s first line</td><td>—</td></tr>
+    <tr><td>Computer science fundamentals (your minor)</td><td>Git workflow, CI/CD, secrets management, idempotent scripts, regex, pagination, rate-limit awareness, reproducible builds.</td><td><span class="mono">.github/workflows/scrape.yml</span> · commit log</td><td>“CI/CD, git, API integration”</td></tr>
+  </table>
+
+  <h3>Interview questions this project answers · and the shape of your answer</h3>
+  <table class="tight">
+    <tr><th style="width:34%">They ask</th><th>You say (sketch)</th></tr>
+    <tr><td>“Tell me about a data project you took start to finish.”</td><td>Question → pipeline → analysis → memo → outreach. The 30-second version (p. 13), then stop and let them pick a thread.</td></tr>
+    <tr><td>“Walk me through your data model.”</td><td>Grain is game-hour. Two fact tables from APIs, one hand-kept dimension (series state), a view with hours-to-game. Same shape as Archtics → warehouse.</td></tr>
+    <tr><td>“What was the hardest part?”</td><td>Joining two sources with no shared key (team + date + hour), and deciding what a cancelled Game 5 <i>means</i> in the data. Both are real-world data problems, not textbook ones.</td></tr>
+    <tr><td>“How do you know your result is real?”</td><td>Matched comparisons at equal hours-to-game; clustered errors by game; re-fit without the World Series; median vs lowest. And the limits: listings, not sales.</td></tr>
+    <tr><td>“Write a query that…” (live SQL)</td><td>You’ve written six on this schema. Pacing, gap, before/after, running totals: rehearse them from memory in December (p. 15).</td></tr>
+    <tr><td>“Why sports business analytics?”</td><td>Not “I love sports.” “Fans are customers with strong preferences and the inventory is perishable to the hour. It’s the hardest pricing problem I’ve seen; I spent October measuring it.”</td></tr>
+  </table>
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 12 · Skills matrix</span></div>
+</div>
+
+
+<!-- ============================================================ PAGE 13: RESUME LINES + PITCH -->
+<div class="page">
+  <h2>What it becomes on paper · resume, TeamWork Online, and the pitch</h2>
+  <p class="lead">The project is only worth what you can say about it in thirty seconds, three bullets, and one headline. Write these on Nov 2 with the real numbers filled in; the placeholders here are the shape.</p>
+  <div class="grid2" style="margin-top:6px">
+    <div class="box soft">
+      <h3 style="margin-top:0">Resume: the Projects entry (add Nov 2)</h3>
+      <p><b>Pricing October · Independent project · Sep – Nov 2026</b></p>
+      <ul>
+        <li>Built an hourly ETL pipeline (Python, GitHub Actions) collecting resale and primary ticket prices for all 2026 MLB postseason games from two public APIs; ~40k rows into SQLite</li>
+        <li>Wrote SQL (CTEs, window functions) and a clustered-SE regression to measure the “if necessary” discount and the primary-vs-resale gap by round</li>
+        <li>Published a 4-view Tableau Public dashboard and a one-page memo with three pricing recommendations; shared with analytics staff at 8 clubs</li>
+      </ul>
+    </div>
+    <div class="box soft">
+      <h3 style="margin-top:0">TeamWork Online: the Experience entry (add Nov 2)</h3>
+      <p><b>Title:</b> Sports Analytics Project Lead (Independent) · <b>Org:</b> Pricing October · <b>Dates:</b> Sep 2026 – Nov 2026</p>
+      <p class="small">Same three bullets. Skills: Data Analysis, SQL, Python, Tableau, Ticketing, Data Engineering, Research, Project Management.</p>
+      <p class="small" style="margin:0">Headline update: “Business Analytics | Ticketing &amp; Pricing Analytics | SQL · Python · Tableau | Auburn ’28”. SQL moves from “learning” to listed once Q3 is written.</p>
+    </div>
+  </div>
+
+
+  <div class="grid2" style="margin-top:8px">
+    <div>
+      <h3>LinkedIn: the Projects section</h3>
+      <div class="box soft">
+        <p><b>Pricing October: how the MLB postseason ticket market prices uncertainty</b> · Sep 2026 – Nov 2026</p>
+        <p class="small" style="margin:0">Same three bullets, plus the dashboard link as the project URL and two media items: the full dashboard screenshot and the memo PDF. Skills: SQL, Python, Tableau, Data Engineering, Statistics.</p>
+      </div>
+      <h3>Headlines · pick one per platform</h3>
+      <div class="box soft">
+        <ul style="margin-left:14px">
+          <li><b>TeamWork Online:</b> Business Analytics | Ticketing &amp; Pricing Analytics | SQL · Python · Tableau | Auburn ’28</li>
+          <li><b>LinkedIn:</b> Business Analytics @ Auburn · built an hourly MLB postseason ticket-pricing dataset · SQL, Python, Tableau · Summer 2027 sports strategy &amp; analytics</li>
+          <li><b>Email signature:</b> Michael Schwartz · Auburn Business Analytics ’28 · Pricing October: [dashboard link]</li>
+        </ul>
+      </div>
+      <h3>Interview: the three-minute walk-through</h3>
+      <ol>
+        <li><b>Question</b> (20 s): postseason inventory is high-margin and time-starved; how does the market price games that might not happen?</li>
+        <li><b>Data</b> (40 s): two APIs, hourly, five weeks, unattended on GitHub Actions; ~40k rows; a hand-kept results table for series state. Listings, not sales.</li>
+        <li><b>Method</b> (40 s): matched comparisons at equal hours-to-game; one log-price regression with game-clustered errors.</li>
+        <li><b>Findings</b> (50 s): the three numbers, each with its comparison.</li>
+        <li><b>What I’d do with club data</b> (30 s): section-level, actual sales, pace vs. last postseason, a hold-back rule for if-necessary inventory.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>After Nov 5</h3>
+      <ul>
+        <li><b>Nov 18:</b> Power BI rebuild (already in plan).</li>
+        <li><b>Dec 16–23:</b> Extension: Giants/Jets 12-week curve with same-stadium control. Same repo, second memo.</li>
+        <li><b>Dec 30:</b> Mock interview: “walk me through Pricing October” in 3 minutes, then in 30 seconds.</li>
+        <li><b>Spring:</b> If Auburn Athletics shares ticket data, the same pipeline shape and queries apply. That’s the pitch for the free dashboard project.</li>
+      </ul>
+
+      <div class="box navy" style="margin-top:8px">
+        <h3 style="margin-top:0">The thirty-second version</h3>
+        <p style="color:#e8eef6;margin:0">“During the 2026 postseason I built a pipeline that logged resale and primary ticket prices every hour for every game, about forty thousand rows. I used SQL and a regression to measure how the market discounts games that might not be played and where clubs priced under the market, then wrote it up as a one-page memo with three recommendations and sent it to analytics staff at eight clubs.”</p>
+      </div>
+      <h3>Explaining it to a ticket sales manager</h3>
+      <div class="box soft">
+        <p style="margin:0">“You know how a Game 5 that might not happen sells for less than Game 1? I measured how much less, for every series, every hour, and how fast it catches up once the game is confirmed. The short version: the market discounts uncertainty about ___%, and it fixes that in about ___ hours. So if the club holds that inventory until the series state is known, it sells at the higher number.” No SQL, no regression, one action. That’s the test of whether you understand it.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 13 · On paper</span></div>
+</div>
+
+<!-- ============================================================ PAGE 14: DAY BY DAY -->
+<div class="page">
+  <h2>Day by day · Sep 27 → Nov 5 · project tasks only</h2>
+  <p class="small">This replaces the “Project 1” rows in your game plan. Networking, applications and SQL lessons stay where they are. The daily minimum still runs underneath. ⏱ = time estimate.</p>
+
+  <div class="grid2">
+    <div>
+      <table class="tight">
+        <tr><th style="width:4%"></th><th style="width:22%">Day</th><th>Task</th></tr>
+        <tr><td><span class="chk"></span></td><td>Sun Sep 27</td><td>Read this blueprint. Create SeatGeek + Ticketmaster keys (p. 2, items 1–2). ⏱ 15 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Mon Sep 28</td><td>Fill .env, create GitHub repo + secrets, say “keys are in.” First snapshot runs; fixes; push. First green check tonight. ⏱ 20 min</td></tr>
+        <tr><td><span class="chk"></span></td><td class="due">Tue Sep 29</td><td>FIRST PITCH 2 pm ET. Check Actions at 1 pm and 9 pm. Watch how Yankees–Red Sox G1 prices move in the last 6 hours (View 1 preview). ⏱ 5 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Sep 30</td><td>Actions check. Start <span class="mono">results.csv</span>: four rows for last night’s games. ⏱ 10 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Thu Oct 1</td><td>Game 3s: note which were played and which vanished; that’s your first “if necessary” observation. Fill bracket. ⏱ 10 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Fri Oct 2</td><td>Run build_db.py. Query Q0 (health) and Q1 (decay curve) on Wild Card data. Screenshot the first result; it goes in the README as “day 4.” ⏱ 40 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 3</td><td>Division Series G1. Actions check. Note whether the 1-seeds’ listings existed before the opponent was known (Q3 material). ⏱ 5 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sun Oct 4</td><td>Weekly review. Pipeline health row (p. 5). results.csv up to date. ⏱ 15 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Mon–Wed Oct 5–7</td><td>Actions check daily. results.csv after each game. ⏱ 5 min/day</td></tr>
+        <tr><td><span class="chk"></span></td><td class="ok">Thu Oct 8 · Fall Break</td><td>3-hour block: Q2 (rivalry) and Q5 (gap). Save both under analysis/ with the answer in a comment. Write the data dictionary into the README. ⏱ 3 h</td></tr>
+        <tr><td><span class="chk"></span></td><td class="ok">Fri Oct 9 · Fall Break</td><td>2-hour block: Q3 (if-necessary discount) on DS data. Draft the three findings as sentences, even if the numbers will change. ⏱ 2 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 10</td><td>ALDS Game 5s, if any. Bracket. ⏱ 5 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sun Oct 11</td><td>Weekly review. LCS begins. Pipeline health row. ⏱ 15 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Mon–Thu Oct 12–15</td><td>Actions check daily. results.csv. Oct 14: while drafting NBA answers, use this project for “tell me about a data project.” ⏱ 5 min/day</td></tr>
+      </table>
+    </div>
+    <div>
+      <table class="tight">
+        <tr><th style="width:4%"></th><th style="width:22%">Day</th><th>Task</th></tr>
+        <tr><td><span class="chk"></span></td><td>Fri Oct 16</td><td>Tableau Public account. Export resale CSV. View 1 built and published. ⏱ 1.5 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 17</td><td>Views 2 and 3. Dashboard layout. Sentence titles. ⏱ 2.5 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sun Oct 18</td><td>Weekly review. Pipeline health row. ⏱ 15 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Mon–Fri Oct 19–23</td><td>Actions check daily. results.csv. Oct 21–22: Q4 and Q6 as your window-function homework (they’re the Kaggle lessons, on your data). WS G1 Fri Oct 23. ⏱ 5 min/day + 1 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 24</td><td>Memo draft (p. 11) with placeholder numbers. View 4. Send the draft to me for the VP read. ⏱ 2 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sun Oct 25</td><td>Weekly review. Regression first pass (Q7) on everything through the LCS. ⏱ 1.5 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Mon–Thu Oct 26–29</td><td>WS games. Actions check. results.csv. Revise memo with real numbers as the WS adds rows. ⏱ 10 min/day</td></tr>
+        <tr><td><span class="chk"></span></td><td>Fri Oct 30</td><td>README: question, data, method, three findings with screenshots, limits, how to run. ⏱ 1.5 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sat Oct 31</td><td>WS G7 if necessary. Final polish. Ask one club officer or professor for a critique. ⏱ 1 h</td></tr>
+        <tr><td><span class="chk"></span></td><td>Sun Nov 1</td><td>Final snapshot. Re-run build_db, re-run Q1–Q7, lock the numbers. Final memo PDF. Checkpoint from the game plan: ~40 messages sent, 5+ calls. ⏱ 2 h</td></tr>
+        <tr><td><span class="chk"></span></td><td class="due">Mon Nov 2</td><td>PUBLISH. LinkedIn post, dashboard link, repo link. Resume Projects entry. TeamWork Online Experience entry. ⏱ 45 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Tue Nov 3</td><td>Outreach wave: Mets, Yankees, MLB (Message 1). ⏱ 30 min</td></tr>
+        <tr><td><span class="chk"></span></td><td>Wed Nov 4</td><td>Apply to whatever’s live (game plan). Attach the memo link. ⏱ per posting</td></tr>
+        <tr><td><span class="chk"></span></td><td>Thu Nov 5</td><td>Outreach wave: Braves, Rays, Panthers, Titans, Hornets, Jaguars. Stop the MLB scraper (leave Giants/Jets running). ⏱ 30 min</td></tr>
+      </table>
+
+      <div class="box gold" style="margin-top:8px">
+        <h3 style="margin-top:0">Total project time, Sep 27 → Nov 5</h3>
+        <p style="margin:0">About <b>28 hours</b> over six weeks: ~6 h in the two Fall Break blocks, ~8 h on the dashboard and memo weekends, ~4 h on the README and publish, and ~10 h of five-minute daily checks and results.csv. The pipeline does the other 800 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 14 · Day by day</span></div>
+</div>
+
+<!-- ============================================================ PAGE 13: RISKS -->
+<div class="page">
+  <h2>Risks, fallbacks, and how we know it’s working</h2>
+
+  <div class="grid2">
+    <div>
+      <h3>Risk register</h3>
+      <table class="tight">
+        <tr><th style="width:30%">Risk</th><th style="width:12%">Odds</th><th>What we do</th></tr>
+        <tr><td>SeatGeek no longer issues client IDs</td><td>Medium</td><td>Ticketmaster only. Lose the resale side; keep the primary price curve, status changes (cancelled Game 5s) and the club-side story. Project still ships. Alternative resale source: a small manual daily log of 6 marquee games.</td></tr>
+        <tr><td>SeatGeek returns events but empty <span class="mono">stats</span></td><td>Low–med</td><td>Known to happen for some events. We log the row anyway (nulls are data: “no listings yet”) and filter in the <span class="mono">resale</span> view.</td></tr>
+        <tr><td>Title regex misses a postseason game or catches a non-postseason one</td><td>Medium</td><td>Day 1 check: print the distinct titles, adjust the regex, re-run. Documented in the README as a real-data lesson.</td></tr>
+        <tr><td>GitHub cron silently skips hours</td><td>Low</td><td>GitHub disables schedules on repos with no activity for 60 days; ours commits hourly, so no. Drift of minutes is handled by storing captured_at. Health query Q0 catches gaps.</td></tr>
+        <tr><td>Rate limits</td><td>Low</td><td>~12 calls per hour total. Ticketmaster allows 5,000/day. SeatGeek’s limit is undocumented; hourly is conservative.</td></tr>
+        <tr><td>Yankees swept, NY hook gone</td><td>~50%</td><td>By design, the dataset is league-wide. The NY hook becomes “I tracked the Yankees–Red Sox rivalry premium” plus the Mets/Yankees analysts still care about postseason pricing. Nothing changes in the plan.</td></tr>
+        <tr><td>Short series everywhere, small dataset</td><td>Low</td><td>Even all-minimum series give 33 games and ~25k rows. If-necessary cancellations are themselves the finding.</td></tr>
+        <tr><td>You fall behind on SQL</td><td>Medium</td><td>Queries on p. 9 are written; you run and modify them rather than write from blank. Understanding &gt; authorship for the first pass. Rewrite from memory in December as interview prep.</td></tr>
+        <tr><td>Midterms collide with Oct 16–17 or Oct 24</td><td>Medium</td><td>Dashboard views slide a week; memo slides to Oct 31. Nov 2 publish holds; it has a two-day buffer built in.</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Definition of done · check every box before Nov 2</h3>
+      <div class="box">
+        <ul style="margin-left:14px">
+          <li><span class="chk"></span>Pipeline ran for 30+ consecutive days; gaps listed in README</li>
+          <li><span class="chk"></span><span class="mono">results.csv</span> complete for every game played or cancelled</li>
+          <li><span class="chk"></span>Six SQL files in <span class="mono">analysis/</span>, each with the answer in a comment</li>
+          <li><span class="chk"></span>Regression notebook runs top to bottom from a clean clone</li>
+          <li><span class="chk"></span>Tableau Public dashboard: 4 views, sentence titles, source line, 3 filters</li>
+          <li><span class="chk"></span>Memo: one page, three findings with numbers, three recommendations, limits stated</li>
+          <li><span class="chk"></span>README: question · data dictionary · method · findings with screenshots · limits · how to run</li>
+          <li><span class="chk"></span>One outside critique received and one change made because of it</li>
+          <li><span class="chk"></span>LinkedIn post published; resume and TeamWork Online updated</li>
+          <li><span class="chk"></span>You can explain every line of scrape.py and every query without notes</li>
+        </ul>
+      </div>
+
+      <h3>Signals it’s working (before anyone hires you)</h3>
+      <ul>
+        <li>A reply to Message 1 from anyone at a club. One is enough; it becomes a call.</li>
+        <li>A comment on the LinkedIn post from someone in the industry you don’t know.</li>
+        <li>An interviewer asks “how did you handle the games that got cancelled?” and you have a real answer.</li>
+        <li>You catch yourself explaining hours-to-game elasticity to a friend at a bar.</li>
+      </ul>
+
+
+      <h3>If everything goes wrong · the minimum viable version</h3>
+      <div class="box">
+        <p class="small" style="margin-bottom:3px">Say midterms eat October, one API dies, and the Yankees go out in two. This still ships on Nov 2 and still beats most student portfolios:</p>
+        <ol class="small" style="margin-bottom:0">
+          <li><b>One source, daily.</b> Ticketmaster primary price range and status for every postseason game, once a day. Still a real pipeline, still unattended.</li>
+          <li><b>Two queries.</b> Q1 (price by days-to-game) and the status log of every if-necessary game that was cancelled: how many, how long they were on sale, at what price.</li>
+          <li><b>One chart, one page.</b> A single decay chart in Tableau Public and a half-page memo: “___ of ___ if-necessary games were sold and then cancelled. Here’s what that costs fans and what a hold-back rule would do.”</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="foot"><span>Pricing October · Blueprint v1</span><span>Page 15 · Risks and done</span></div>
+</div>
+
+</body>
+</html>

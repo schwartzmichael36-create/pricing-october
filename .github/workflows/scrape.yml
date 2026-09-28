@@ -1,0 +1,35 @@
+name: hourly snapshot
+
+on:
+  schedule:
+    - cron: "7 * * * *"        # every hour at :07 (GitHub may delay scheduled runs by a few minutes)
+  workflow_dispatch:           # lets you trigger a run by hand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: snapshot both sources
+        env:
+          SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
+          TM_API_KEY: ${{ secrets.TM_API_KEY }}
+        run: python scrape.py
+
+      - name: commit new rows
+        run: |
+          git config user.name "snapshot-bot"
+          git config user.email "snapshot-bot@users.noreply.github.com"
+          git add data/*.csv
+          git diff --cached --quiet || git commit -m "snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
