@@ -26,6 +26,11 @@ jobs:
           TM_API_KEY: ${{ secrets.TM_API_KEY }}
         run: python scrape.py
 
+      - name: resale listing captures (budgeted)
+        env:
+          TICKETSDEV_API_KEY: ${{ secrets.TICKETSDEV_API_KEY }}
+        run: python capture.py
+
       - name: commit new rows
         run: |
           git config user.name "snapshot-bot"

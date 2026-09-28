@@ -16,6 +16,7 @@ DB = DATA / "pricing.db"
 NUMERIC = {
     "listing_count", "lowest_price", "average_price", "median_price", "highest_price",
     "min_price", "max_price",
+    "ticket_count", "get_in_price", "avg_price", "quantity", "ticket_price", "fee", "total_price", "deal_score",
 }
 
 
@@ -40,18 +41,22 @@ def load(conn: sqlite3.Connection, table: str, csv_path: Path) -> int:
 
 if __name__ == "__main__":
     conn = sqlite3.connect(DB)
-    for table, name in (("seatgeek", "seatgeek_snapshots.csv"), ("ticketmaster", "ticketmaster_snapshots.csv")):
+    for table, name in (("seatgeek", "seatgeek_snapshots.csv"), ("ticketmaster", "ticketmaster_snapshots.csv"),
+                        ("captures", "captures.csv"), ("listings", "listings.csv")):
         print(f"{table}: {load(conn, table, DATA / name)} rows")
 
-    # Convenience view: one row per game per hour with hours-to-game precomputed.
+    # Convenience view: one row per game per capture with hours-to-game precomputed.
+    # `resale` now reads from the tickets.dev captures (SeatGeek's own stats went empty in 2025).
     conn.execute("DROP VIEW IF EXISTS resale")
-    conn.execute("""
-        CREATE VIEW resale AS
-        SELECT *,
-               (julianday(datetime_local) - julianday(captured_at)) * 24 AS hours_to_game
-        FROM seatgeek
-        WHERE lowest_price IS NOT NULL
-    """)
+    if conn.execute("SELECT name FROM sqlite_master WHERE name='captures'").fetchone():
+        conn.execute("""
+            CREATE VIEW resale AS
+            SELECT *,
+                   get_in_price AS lowest_price,
+                   (julianday(datetime_local) - julianday(captured_at)) * 24 AS hours_to_game
+            FROM captures
+            WHERE ok = '1' AND get_in_price IS NOT NULL
+        """)
     conn.commit()
     conn.close()
     print(f"built {DB}")
