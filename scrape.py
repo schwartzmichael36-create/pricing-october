@@ -26,6 +26,16 @@ ROOT = Path(__file__).parent
 DATA = ROOT / "data"
 DATA.mkdir(exist_ok=True)
 
+def load_dotenv(path: Path) -> None:
+    """Local runs: read KEY=value lines from .env into the environment (GitHub Actions uses secrets)."""
+    if path.exists():
+        for line in path.read_text().splitlines():
+            if "=" in line and not line.lstrip().startswith("#"):
+                key, val = line.split("=", 1)
+                os.environ.setdefault(key.strip(), val.strip())
+
+
+load_dotenv(ROOT / ".env")
 SG_KEY = os.environ.get("SEATGEEK_CLIENT_ID", "").strip()
 TM_KEY = os.environ.get("TM_API_KEY", "").strip()
 
@@ -98,6 +108,8 @@ def seatgeek_row(ev: dict, bucket: str) -> dict:
         "average_price": stats.get("average_price"),
         "median_price": stats.get("median_price"),
         "highest_price": stats.get("highest_price"),
+        "announce_date": ev.get("announce_date"),
+        "visible_until_utc": ev.get("visible_until_utc"),
         "url": ev.get("url"),
     }
 
@@ -147,6 +159,7 @@ def tm_row(ev: dict, bucket: str) -> dict:
     venue = (ev.get("_embedded", {}).get("venues") or [{}])[0]
     start = ev.get("dates", {}).get("start", {})
     status = ev.get("dates", {}).get("status", {})
+    public = (ev.get("sales") or {}).get("public") or {}
     return {
         "captured_at": CAPTURED_AT,
         "bucket": bucket,
@@ -162,6 +175,9 @@ def tm_row(ev: dict, bucket: str) -> dict:
         "min_price": pr.get("min"),
         "max_price": pr.get("max"),
         "currency": pr.get("currency"),
+        "sale_start": public.get("startDateTime"),
+        "sale_end": public.get("endDateTime"),
+        "ticket_limit": (ev.get("ticketLimit") or {}).get("info"),
         "url": ev.get("url"),
     }
 
