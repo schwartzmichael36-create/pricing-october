@@ -63,3 +63,15 @@ captured_at,bucket,event_id,title,datetime_local,home_team,away_team,source,http
 2026-09-29T01:45:31+00:00,mlb_postseason,18343057,"TBD at Tampa Bay Rays - ALCS (Game 2, Home Game 2)",2026-10-13T03:30:00,Tampa Bay Rays,,seatgeek,200,1,,394,2493,194,365,452.79,8892
 2026-09-29T01:45:31+00:00,mlb_postseason,18343140,TBD at Boston Red Sox - ALCS (Home Game 2),2026-10-13T03:30:00,Boston Red Sox,,seatgeek,200,1,,14,43,703,1105.5,1512.07,4366
 2026-09-29T01:45:31+00:00,mlb_postseason,18343394,TBD at Atlanta Braves - NLCS (Home Game 2),2026-10-13T03:30:00,Atlanta Braves,,seatgeek,200,1,,724,4082,155,357.5,505.02,9248
+2026-09-29T14:37:29+00:00,mlb_postseason,18343379,"Philadelphia Phillies at Atlanta Braves - NL Wild Card (Game 1, Home Game 1)",2026-09-29T14:00:00,Atlanta Braves,Philadelphia Phillies,seatgeek,200,1,,1250,4448,18,57,97.57,1911
+2026-09-29T14:37:29+00:00,mlb_postseason,18343324,"Chicago White Sox at Houston Astros - AL Wild Card (Game 1, Home Game 1)",2026-09-29T16:00:00,Houston Astros,Chicago White Sox,seatgeek,200,1,,406,1742,30,90,136.56,3154
+2026-09-29T14:37:29+00:00,mlb_postseason,18343520,"Chicago Cubs at San Diego Padres - NL Wild Card (Game 1, Home Game 1)",2026-09-29T19:00:00,San Diego Padres,Chicago Cubs,seatgeek,200,1,,1596,4479,73,180.5,230.04,4829
+2026-09-29T14:37:29+00:00,mlb_postseason,18343017,"Boston Red Sox at New York Yankees - AL Wild Card (Game 1, Home Game 1)",2026-09-29T20:00:00,New York Yankees,Boston Red Sox,seatgeek,200,1,,1411,7082,136,269,430.22,5771
+2026-09-29T14:37:29+00:00,mlb_postseason,18343381,"Philadelphia Phillies at Atlanta Braves - NL Wild Card (Game 2, Home Game 2)",2026-09-30T14:00:00,Atlanta Braves,Philadelphia Phillies,seatgeek,200,1,,1623,6358,32,71,116.81,2275
+2026-09-29T14:37:29+00:00,mlb_postseason,18343325,"Chicago White Sox at Houston Astros - AL Wild Card (Game 2, Home Game 2)",2026-09-30T16:00:00,Houston Astros,Chicago White Sox,seatgeek,200,1,,553,2622,28,102,151.03,1150
+2026-09-29T14:37:29+00:00,mlb_postseason,18343521,"Chicago Cubs at San Diego Padres - NL Wild Card (Game 2, Home Game 2)",2026-09-30T19:00:00,San Diego Padres,Chicago Cubs,seatgeek,200,1,,1487,4405,89,215,299.14,11654
+2026-09-29T14:37:29+00:00,mlb_postseason,18343016,"Boston Red Sox at New York Yankees - AL Wild Card (Game 2, Home Game 2)",2026-09-30T20:00:00,New York Yankees,Boston Red Sox,seatgeek,200,1,,2037,12155,126,259,398.33,5796
+2026-09-29T14:37:29+00:00,mlb_postseason,18343384,"Philadelphia Phillies at Atlanta Braves - NL Wild Card (Game 3, Home Game 3)",2026-10-01T14:00:00,Atlanta Braves,Philadelphia Phillies,seatgeek,200,1,,1517,6611,41,91,146.93,2275
+2026-09-29T14:37:29+00:00,mlb_postseason,18343170,TBD at Cleveland Guardians - ALCS (Home Game 2),2026-10-13T03:30:00,Cleveland Guardians,,seatgeek,200,1,,534,2619,241,473,493.45,1657
+2026-09-29T14:37:29+00:00,mlb_postseason,18343417,TBD at Chicago Cubs - NLCS (Home Game 1),2026-10-13T03:30:00,Chicago Cubs,,seatgeek,200,1,,225,733,354,1263,1984.95,14436
+2026-09-29T14:37:29+00:00,mlb_postseason,18343338,TBD at Houston Astros - ALCS (Home Game 2),2026-10-13T03:30:00,Houston Astros,,seatgeek,200,1,,18,68,262,326.5,667.17,2322
