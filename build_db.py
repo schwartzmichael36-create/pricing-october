@@ -20,30 +20,34 @@ NUMERIC = {
 }
 
 
-def load(conn: sqlite3.Connection, table: str, csv_path: Path) -> int:
-    if not csv_path.exists():
-        print(f"{csv_path.name}: not found, skipping")
+def load(conn: sqlite3.Connection, table: str, stem: str) -> int:
+    """Union every version of a snapshot file (stem.csv, stem.v2.csv, …); missing columns are NULL."""
+    files = sorted(DATA.glob(f"{stem}.csv")) + sorted(DATA.glob(f"{stem}.v*.csv"))
+    if not files:
+        print(f"{stem}: not found, skipping")
         return 0
-    with csv_path.open(newline="") as f:
-        reader = csv.DictReader(f)
-        cols = reader.fieldnames or []
-        rows = list(reader)
+    cols, chunks = [], []
+    for fp in files:
+        with fp.open(newline="") as f:
+            reader = csv.DictReader(f)
+            for c in reader.fieldnames or []:
+                if c not in cols:
+                    cols.append(c)
+            chunks.append(list(reader))
     conn.execute(f"DROP TABLE IF EXISTS {table}")
     types = ", ".join(f"{c} {'REAL' if c in NUMERIC else 'TEXT'}" for c in cols)
     conn.execute(f"CREATE TABLE {table} ({types})")
-    conn.executemany(
-        f"INSERT INTO {table} VALUES ({', '.join('?' for _ in cols)})",
-        [[(r[c] or None) for c in cols] for r in rows],
-    )
+    rows = [[(r.get(c) or None) for c in cols] for chunk in chunks for r in chunk]
+    conn.executemany(f"INSERT INTO {table} VALUES ({', '.join('?' for _ in cols)})", rows)
     conn.execute(f"CREATE INDEX idx_{table}_event ON {table}(event_id, captured_at)")
     return len(rows)
 
 
 if __name__ == "__main__":
     conn = sqlite3.connect(DB)
-    for table, name in (("seatgeek", "seatgeek_snapshots.csv"), ("ticketmaster", "ticketmaster_snapshots.csv"),
-                        ("captures", "captures.csv"), ("listings", "listings.csv")):
-        print(f"{table}: {load(conn, table, DATA / name)} rows")
+    for table, stem in (("seatgeek", "seatgeek_snapshots"), ("ticketmaster", "ticketmaster_snapshots"),
+                        ("captures", "captures"), ("listings", "listings")):
+        print(f"{table}: {load(conn, table, stem)} rows")
 
     # Convenience view: one row per game per capture with hours-to-game precomputed.
     # `resale` now reads from the tickets.dev captures (SeatGeek's own stats went empty in 2025).

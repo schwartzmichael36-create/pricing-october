@@ -57,11 +57,25 @@ POSTSEASON_RE = re.compile(
 
 
 def append_rows(path: Path, rows: list[dict]) -> None:
+    """Append-only, schema-safe. If the columns changed since the file was created, the rows go
+    to a sibling file (name.v2.csv, name.v3.csv …) with the new header instead of misaligning
+    the old one. build_db.py unions every version."""
     if not rows:
         return
+    cols = list(rows[0].keys())
+    if path.exists():
+        with path.open(newline="") as f:
+            header = next(csv.reader(f), [])
+        if header != cols:
+            stem, n = path.name.removesuffix(".csv").split(".v")[0], 2
+            while True:
+                nxt = path.with_name(f"{stem}.v{n}.csv")
+                if not nxt.exists() or next(csv.reader(nxt.open(newline="")), []) == cols:
+                    return append_rows(nxt, rows)
+                n += 1
     new_file = not path.exists()
     with path.open("a", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        w = csv.DictWriter(f, fieldnames=cols)
         if new_file:
             w.writeheader()
         w.writerows(rows)
