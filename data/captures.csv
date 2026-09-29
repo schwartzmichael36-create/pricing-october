@@ -31,3 +31,35 @@ captured_at,bucket,event_id,title,datetime_local,home_team,away_team,source,http
 2026-09-28T15:42:35+00:00,mlb_postseason,18343329,"Cleveland Guardians at Houston Astros - ALDS (Game 3, Home Game 1)",2026-10-07T03:30:00,Houston Astros,,seatgeek,200,1,,485,2898,71,168,189.3,1200
 2026-09-28T15:42:35+00:00,mlb_postseason,18343189,"Cleveland Guardians at Chicago White Sox - ALDS (Game 3, Home Game 1)",2026-10-07T03:30:00,Chicago White Sox,,seatgeek,200,1,,990,4517,122,255.5,364.62,8300
 2026-09-28T15:42:35+00:00,mlb_postseason,18343416,"Milwaukee Brewers at Chicago Cubs - NLDS (Game 4, Home Game 2)",2026-10-07T03:30:00,Chicago Cubs,,seatgeek,200,1,,432,1467,260,732,993,8992
+2026-09-29T01:45:31+00:00,mlb_postseason,18343379,"Philadelphia Phillies at Atlanta Braves - NL Wild Card (Game 1, Home Game 1)",2026-09-29T14:00:00,Atlanta Braves,Philadelphia Phillies,seatgeek,200,1,,1671,5922,26,64,109.04,1737
+2026-09-29T01:45:31+00:00,mlb_postseason,18343324,"Chicago White Sox at Houston Astros - AL Wild Card (Game 1, Home Game 1)",2026-09-29T16:00:00,Houston Astros,Chicago White Sox,seatgeek,200,1,,496,2227,31,97,169.4,3612
+2026-09-29T01:45:31+00:00,mlb_postseason,18343520,"Chicago Cubs at San Diego Padres - NL Wild Card (Game 1, Home Game 1)",2026-09-29T19:00:00,San Diego Padres,Chicago Cubs,seatgeek,200,1,,1560,4490,94,202,257.91,4829
+2026-09-29T01:45:31+00:00,mlb_postseason,18343017,"Boston Red Sox at New York Yankees - AL Wild Card (Game 1, Home Game 1)",2026-09-29T20:00:00,New York Yankees,Boston Red Sox,seatgeek,200,1,,1570,8147,132,262,419.81,5299
+2026-09-29T01:45:31+00:00,mlb_postseason,18343381,"Philadelphia Phillies at Atlanta Braves - NL Wild Card (Game 2, Home Game 2)",2026-09-30T14:00:00,Atlanta Braves,Philadelphia Phillies,seatgeek,200,1,,1672,6353,35,75,121.75,2275
+2026-09-29T01:45:31+00:00,mlb_postseason,18343325,"Chicago White Sox at Houston Astros - AL Wild Card (Game 2, Home Game 2)",2026-09-30T16:00:00,Houston Astros,Chicago White Sox,seatgeek,200,1,,522,2601,34,109.5,158.52,1150
+2026-09-29T01:45:31+00:00,mlb_postseason,18343521,"Chicago Cubs at San Diego Padres - NL Wild Card (Game 2, Home Game 2)",2026-09-30T19:00:00,San Diego Padres,Chicago Cubs,seatgeek,200,1,,1448,4401,95,215,306.61,11654
+2026-09-29T01:45:31+00:00,mlb_postseason,18343016,"Boston Red Sox at New York Yankees - AL Wild Card (Game 2, Home Game 2)",2026-09-30T20:00:00,New York Yankees,Boston Red Sox,seatgeek,200,1,,1841,9459,124,261,421.59,6706
+2026-09-29T01:45:31+00:00,mlb_postseason,18343528,"Milwaukee Brewers at San Diego Padres - NLDS (Game 4, Home Game 2)",2026-10-07T03:30:00,,,seatgeek,200,1,,1099,4865,153,417,464.38,4745
+2026-09-29T01:45:31+00:00,mlb_postseason,18343021,"Tampa Bay Rays at New York Yankees - ALDS (Game 4, Home Game 2)",2026-10-08T03:30:00,New York Yankees,,seatgeek,200,1,,1628,8852,116,269,441.4,16802
+2026-09-29T01:45:31+00:00,mlb_postseason,18343135,"Tampa Bay Rays at Boston Red Sox - ALDS (Game 4, Home Game 2)",2026-10-08T03:30:00,Boston Red Sox,,seatgeek,200,1,,1007,4456,157,330,510.07,9343
+2026-09-29T01:45:31+00:00,mlb_postseason,18343333,"Cleveland Guardians at Houston Astros - ALDS (Game 4, Home Game 2)",2026-10-08T03:30:00,Houston Astros,,seatgeek,200,1,,484,2886,70,169,185.69,712
+2026-09-29T01:45:31+00:00,mlb_postseason,18343190,"Cleveland Guardians at Chicago White Sox - ALDS (Game 4, Home Game 2)",2026-10-08T03:30:00,Chicago White Sox,,seatgeek,200,1,,409,1890,111,351,538.3,9485
+2026-09-29T01:45:31+00:00,mlb_postseason,18528108,"TBD at Milwaukee Brewers - NLDS (Game 5, Home Game 3)",2026-10-09T03:30:00,Milwaukee Brewers,,seatgeek,200,1,,631,3308,153,443,466.24,1486
+2026-09-29T01:45:31+00:00,mlb_postseason,18343501,"TBD at Los Angeles Dodgers - NLDS (Game 5, Home Game 3)",2026-10-09T03:30:00,Los Angeles Dodgers,,seatgeek,200,1,,2894,15844,170,331,529.12,21289
+2026-09-29T01:45:31+00:00,mlb_postseason,18343048,"TBD at Tampa Bay Rays - ALDS (Game 5, Home Game 3)",2026-10-10T03:30:00,Tampa Bay Rays,,seatgeek,200,1,,674,3991,125,285.5,375.78,5930
+2026-09-29T01:45:31+00:00,mlb_postseason,18343164,"TBD at Cleveland Guardians - ALDS (Game 5, Home Game 3)",2026-10-10T03:30:00,Cleveland Guardians,,seatgeek,200,1,,1057,7061,107,210,251.17,966
+2026-09-29T01:45:31+00:00,mlb_postseason,18528115,"TBD at Milwaukee Brewers - NLCS (Game 1, Home Game 1)",2026-10-11T03:30:00,Milwaukee Brewers,,seatgeek,200,1,,13,40,493,692,863.23,1780
+2026-09-29T01:45:31+00:00,nfl_metlife,18014026,Cleveland Browns at New York Jets,2026-10-11T13:00:00,New York Jets,Cleveland Browns,seatgeek,200,1,,1112,4000,74,160,223.05,11760
+2026-09-29T01:45:31+00:00,mlb_postseason,18343028,TBD at New York Yankees - ALCS (Home Game 1),2026-10-12T03:30:00,New York Yankees,,seatgeek,200,1,,535,2551,198,475,940.5,11988
+2026-09-29T01:45:31+00:00,mlb_postseason,18343392,TBD at Atlanta Braves - NLCS (Home Game 1),2026-10-12T03:30:00,Atlanta Braves,,seatgeek,200,1,,721,4073,155,364,507.35,9248
+2026-09-29T01:45:31+00:00,mlb_postseason,18343166,TBD at Cleveland Guardians - ALCS (Home Game 1),2026-10-12T03:30:00,Cleveland Guardians,,seatgeek,200,1,,531,2597,262,474,492.1,1673
+2026-09-29T01:45:31+00:00,mlb_postseason,18343056,"TBD at Tampa Bay Rays - ALCS (Game 1, Home Game 1)",2026-10-12T03:30:00,Tampa Bay Rays,,seatgeek,200,1,,418,2559,199,369.5,447.78,8892
+2026-09-29T01:45:31+00:00,mlb_postseason,18343139,TBD at Boston Red Sox - ALCS (Home Game 1),2026-10-12T03:30:00,Boston Red Sox,,seatgeek,200,1,,36,122,568,1107.5,1453.31,4366
+2026-09-29T01:45:31+00:00,mlb_postseason,18528117,"TBD at Milwaukee Brewers - NLCS (Game 2, Home Game 2)",2026-10-12T03:30:00,Milwaukee Brewers,,seatgeek,200,1,,10,30,491,998.5,989.3,1666
+2026-09-29T01:45:31+00:00,mlb_postseason,18343195,"TBD at Chicago White Sox - ALCS (Game 3, Home Game 1)",2026-10-12T03:30:00,,,seatgeek,200,1,,287,1238,177,449,623.28,11855
+2026-09-29T01:45:31+00:00,mlb_postseason,18343336,TBD at Houston Astros - ALCS (Home Game 1),2026-10-12T03:30:00,Houston Astros,,seatgeek,200,1,,19,71,256,312,508.63,1797
+2026-09-29T01:45:31+00:00,mlb_postseason,18343029,TBD at New York Yankees - ALCS (Home Game 2),2026-10-13T03:30:00,New York Yankees,,seatgeek,200,1,,536,2575,207,493,895.24,11988
+2026-09-29T01:45:31+00:00,mlb_postseason,18528219,TBD at Philadelphia Phillies - NLCS (Home Game 1),2026-10-13T03:30:00,Philadelphia Phillies,,seatgeek,200,1,,18,68,633,1008,1468.11,4744
+2026-09-29T01:45:31+00:00,mlb_postseason,18343057,"TBD at Tampa Bay Rays - ALCS (Game 2, Home Game 2)",2026-10-13T03:30:00,Tampa Bay Rays,,seatgeek,200,1,,394,2493,194,365,452.79,8892
+2026-09-29T01:45:31+00:00,mlb_postseason,18343140,TBD at Boston Red Sox - ALCS (Home Game 2),2026-10-13T03:30:00,Boston Red Sox,,seatgeek,200,1,,14,43,703,1105.5,1512.07,4366
+2026-09-29T01:45:31+00:00,mlb_postseason,18343394,TBD at Atlanta Braves - NLCS (Home Game 2),2026-10-13T03:30:00,Atlanta Braves,,seatgeek,200,1,,724,4082,155,357.5,505.02,9248
