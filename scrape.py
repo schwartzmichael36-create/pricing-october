@@ -98,6 +98,7 @@ def seatgeek_row(ev: dict, bucket: str) -> dict:
         "event_id": ev.get("id"),
         "title": ev.get("title"),
         "datetime_local": ev.get("datetime_local"),
+        "datetime_utc": ev.get("datetime_utc"),      # the one to compute hours-to-game from
         "time_tbd": ev.get("time_tbd"),
         "home_team": home.get("name"),
         "away_team": away.get("name"),

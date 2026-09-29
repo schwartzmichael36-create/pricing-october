@@ -49,13 +49,23 @@ if __name__ == "__main__":
     # `resale` now reads from the tickets.dev captures (SeatGeek's own stats went empty in 2025).
     conn.execute("DROP VIEW IF EXISTS resale")
     if conn.execute("SELECT name FROM sqlite_master WHERE name='captures'").fetchone():
+        # Start times: SeatGeek's datetime_utc (snapshots before 2026-09-29 lack it, so take the
+        # latest known value per event). datetime_local is venue-local and must not be compared
+        # with captured_at (UTC).
         conn.execute("""
             CREATE VIEW resale AS
-            SELECT *,
-                   get_in_price AS lowest_price,
-                   (julianday(datetime_local) - julianday(captured_at)) * 24 AS hours_to_game
-            FROM captures
-            WHERE ok = '1' AND get_in_price IS NOT NULL
+            WITH start AS (
+                SELECT event_id, MAX(datetime_utc) AS datetime_utc
+                FROM seatgeek WHERE datetime_utc IS NOT NULL AND datetime_utc <> ''
+                GROUP BY event_id
+            )
+            SELECT c.*,
+                   c.get_in_price AS lowest_price,
+                   s.datetime_utc AS start_utc,
+                   (julianday(s.datetime_utc) - julianday(c.captured_at)) * 24 AS hours_to_game
+            FROM captures c
+            LEFT JOIN start s USING (event_id)
+            WHERE c.ok = '1' AND c.get_in_price IS NOT NULL
         """)
     conn.commit()
     conn.close()

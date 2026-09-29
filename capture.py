@@ -86,9 +86,8 @@ def hours_since(last_iso) -> float:
 
 
 def due(row: dict, last_iso) -> bool:
-    # SeatGeek datetime_local is venue-local with no offset; treating it as UTC
-    # is off by a few hours, which is fine for cadence decisions (not for analysis).
-    h_to_game = (parse_iso(row["datetime_local"]) - NOW).total_seconds() / 3600
+    start = row.get("datetime_utc") or row["datetime_local"]   # older snapshots lack datetime_utc
+    h_to_game = (parse_iso(start) - NOW).total_seconds() / 3600
     if h_to_game < -4:                       # game is over
         return False
     since = hours_since(last_iso)
@@ -138,6 +137,7 @@ def do_capture(row: dict) -> tuple[dict, list[dict]]:
         "event_id": row["event_id"],
         "title": row["title"],
         "datetime_local": row["datetime_local"],
+        "datetime_utc": row.get("datetime_utc"),
         "home_team": row.get("home_team"),
         "away_team": row.get("away_team"),
         "source": "seatgeek",
