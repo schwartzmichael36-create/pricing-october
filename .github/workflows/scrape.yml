@@ -1,9 +1,13 @@
 name: hourly snapshot
 
 on:
-  schedule:
-    - cron: "7 * * * *"        # every hour at :07 (GitHub may delay scheduled runs by a few minutes)
-  workflow_dispatch:           # lets you trigger a run by hand from the Actions tab
+  schedule:                    # GitHub's cron is best-effort (overnight 2026-09-28 it ran every 4–6 h,
+    - cron: "7 * * * *"        # not hourly), so we ask several times an hour and rely on the
+    - cron: "27 * * * *"       # external hourly dispatch (cron-job.org) as the real clock.
+    - cron: "47 * * * *"       # capture.py paces the credit budget, so extra runs cost nothing.
+  workflow_dispatch:           # manual runs from the Actions tab and the external dispatcher
+  repository_dispatch:
+    types: [tick]
 
 permissions:
   contents: write

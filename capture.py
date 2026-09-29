@@ -13,7 +13,8 @@ Cadence (per game):
   further out              every 3 days
 NFL (Giants/Jets) games:   once a day, only inside 14 days of kickoff
 
-Budget: DAILY_CAP captures per UTC day (1,000 credits / ~34 days ≈ 29/day).
+Budget: DAILY_CAP captures per UTC day (1,000 credits / ~34 days ≈ 29/day),
+paced across runs in proportion to the time since the last run.
 
 Outputs (append-only):
   data/captures.csv   one row per capture: stats (get-in, median, count …)
@@ -100,14 +101,26 @@ def due(row: dict, last_iso) -> bool:
     return since >= 71                       # placeholders a week+ out: every 3 days
 
 
+def per_run_room(last: dict, today: int) -> int:
+    """Pace the daily budget across runs, whatever cadence GitHub actually gives us.
+
+    GitHub's cron is best-effort: overnight it fired every 4–6 hours instead of hourly, and a
+    single run spent the whole day's 32 credits. So each run may spend only its share of the
+    day, proportional to the time since the previous run (min 3, max 8 hours' worth).
+    """
+    newest = max(last.values(), default=None)
+    gap_h = min(8.0, hours_since(newest)) if newest else 8.0
+    share = max(3, round(DAILY_CAP * gap_h / 24))
+    return max(0, min(share, DAILY_CAP - today))
+
+
 def plan() -> list[dict]:
     last, today = capture_history()
     snap = latest_snapshot()
     cands = [r for r in snap if due(r, last.get(r["event_id"]))]
     # closest to first pitch first; New York games win ties
     cands.sort(key=lambda r: (r["datetime_local"], "New York" not in (r.get("home_team") or "")))
-    room = max(0, DAILY_CAP - today)
-    return cands[:room]
+    return cands[:per_run_room(last, today)]
 
 
 def do_capture(row: dict) -> tuple[dict, list[dict]]:
