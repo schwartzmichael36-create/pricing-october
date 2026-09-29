@@ -41,8 +41,10 @@ load_dotenv(ROOT / ".env")
 KEY = os.environ.get("TICKETSDEV_API_KEY", "").strip()
 DRY = "--dry-run" in sys.argv
 
-DAILY_CAP = 32
 NOW = datetime.now(timezone.utc)
+# Wild Card round (Sep 29 – Oct 1): 12 games in three days, so a bigger day. 32 after that.
+# Unused credits roll over, and the DS/LCS/WS days have far fewer games listed.
+DAILY_CAP = 44 if NOW.strftime("%Y-%m-%d") <= "2026-10-01" else 32
 CAPTURED_AT = NOW.isoformat(timespec="seconds")
 
 SG_CSV = DATA / "seatgeek_snapshots.csv"
