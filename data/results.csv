@@ -1,0 +1,5 @@
+series,game_no,date,home,away,played,home_w_before,home_l_before,winner,note
+ALWC1,1,2026-09-29,New York Yankees,Boston Red Sox,1,0,0,NYY,Yankees 9-0
+ALWC2,1,2026-09-29,Houston Astros,Chicago White Sox,1,0,0,CWS,White Sox 6-3; road team wins
+NLWC1,1,2026-09-29,Atlanta Braves,Philadelphia Phillies,1,0,0,ATL,Braves 5-3; Riley 3-run HR 8th
+NLWC2,1,2026-09-29,San Diego Padres,Chicago Cubs,1,0,0,SD,Padres 8-0; King near no-hitter

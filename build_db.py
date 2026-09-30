@@ -17,6 +17,7 @@ NUMERIC = {
     "listing_count", "lowest_price", "average_price", "median_price", "highest_price",
     "min_price", "max_price",
     "ticket_count", "get_in_price", "avg_price", "quantity", "ticket_price", "fee", "total_price", "deal_score",
+    "game_no", "played", "home_w_before", "home_l_before",
 }
 
 
@@ -39,14 +40,16 @@ def load(conn: sqlite3.Connection, table: str, stem: str) -> int:
     conn.execute(f"CREATE TABLE {table} ({types})")
     rows = [[(r.get(c) or None) for c in cols] for chunk in chunks for r in chunk]
     conn.executemany(f"INSERT INTO {table} VALUES ({', '.join('?' for _ in cols)})", rows)
-    conn.execute(f"CREATE INDEX idx_{table}_event ON {table}(event_id, captured_at)")
+    if "event_id" in cols:
+        conn.execute(f"CREATE INDEX idx_{table}_event ON {table}(event_id, captured_at)")
     return len(rows)
 
 
 if __name__ == "__main__":
     conn = sqlite3.connect(DB)
     for table, stem in (("seatgeek", "seatgeek_snapshots"), ("ticketmaster", "ticketmaster_snapshots"),
-                        ("captures", "captures"), ("listings", "listings")):
+                        ("captures", "captures"), ("listings", "listings"),
+                        ("results", "results")):          # hand-kept: one row per game
         print(f"{table}: {load(conn, table, stem)} rows")
 
     # Convenience view: one row per game per capture with hours-to-game precomputed.
