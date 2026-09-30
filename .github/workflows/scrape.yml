@@ -1,10 +1,10 @@
 name: hourly snapshot
 
 on:
-  schedule:                    # GitHub's cron is best-effort (overnight 2026-09-28 it ran every 4–6 h,
-    - cron: "7 * * * *"        # not hourly), so we ask several times an hour and rely on the
-    - cron: "27 * * * *"       # external hourly dispatch (cron-job.org) as the real clock.
-    - cron: "47 * * * *"       # capture.py paces the credit budget, so extra runs cost nothing.
+  schedule:
+    - cron: "33 * * * *"       # backup only. The real hourly clock is cron-job.org (dispatch at :00);
+                               # GitHub's cron is best-effort and ran every 4–6 h on 2026-09-28.
+                               # More triggers than this queued runs that overspent the budget.
   workflow_dispatch:           # manual runs from the Actions tab and the external dispatcher
   repository_dispatch:
     types: [tick]
@@ -23,6 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: latest data (a queued run checks out the commit it was triggered at, not HEAD)
+        run: git pull --rebase origin main
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -30,6 +33,7 @@ jobs:
       - run: pip install requests
 
       - name: snapshot both sources
+        continue-on-error: true      # one flaky API must not stop the captures and the commit
         env:
           SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
           TM_API_KEY: ${{ secrets.TM_API_KEY }}

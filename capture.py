@@ -50,7 +50,6 @@ _day = NOW.strftime("%Y-%m-%d")
 DAILY_CAP = 30 if _day <= "2026-10-01" else (18 if _day < "2026-10-28" else 32)
 CAPTURED_AT = NOW.isoformat(timespec="seconds")
 
-SG_CSV = DATA / "seatgeek_snapshots.csv"
 CAP_CSV = DATA / "captures.csv"
 LIST_CSV = DATA / "listings.csv"
 
@@ -61,10 +60,9 @@ def parse_iso(s: str) -> datetime:
 
 
 def latest_snapshot() -> list[dict]:
-    """Rows from the most recent scrape.py run (one per listed game)."""
-    if not SG_CSV.exists():
-        return []
-    rows = list(csv.DictReader(SG_CSV.open()))
+    """Rows from the most recent scrape.py run (one per listed game), across every file version."""
+    files = sorted(DATA.glob("seatgeek_snapshots.csv")) + sorted(DATA.glob("seatgeek_snapshots.v*.csv"))
+    rows = [r for fp in files for r in csv.DictReader(fp.open())]
     if not rows:
         return []
     last = max(r["captured_at"] for r in rows)
