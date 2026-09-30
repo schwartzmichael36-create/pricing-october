@@ -44,7 +44,10 @@ DRY = "--dry-run" in sys.argv
 NOW = datetime.now(timezone.utc)
 # Wild Card round (Sep 29 – Oct 1): 12 games in three days, so a bigger day. 32 after that.
 # Unused credits roll over, and the DS/LCS/WS days have far fewer games listed.
-DAILY_CAP = 44 if NOW.strftime("%Y-%m-%d") <= "2026-10-01" else 32
+# Budget after the 2026-09-30 overspend (≈466 of 1,000 used): 30 for the last Wild Card day,
+# then 18/day through the plan's Oct 28 renewal, when 1,000 fresh credits arrive for the WS.
+_day = NOW.strftime("%Y-%m-%d")
+DAILY_CAP = 30 if _day <= "2026-10-01" else (18 if _day < "2026-10-28" else 32)
 CAPTURED_AT = NOW.isoformat(timespec="seconds")
 
 SG_CSV = DATA / "seatgeek_snapshots.csv"
@@ -68,11 +71,17 @@ def latest_snapshot() -> list[dict]:
     return [r for r in rows if r["captured_at"] == last and r.get("url")]
 
 
+def capture_files() -> list[Path]:
+    """Every version of the captures log (captures.csv, captures.v2.csv, …).
+    Reading only the first one is how 390 credits got spent on 2026-09-30."""
+    return sorted(DATA.glob("captures.csv")) + sorted(DATA.glob("captures.v*.csv"))
+
+
 def capture_history() -> tuple[dict, int]:
     """Last capture time per event, and how many captures already happened today (UTC)."""
     last, today = {}, 0
-    if CAP_CSV.exists():
-        for r in csv.DictReader(CAP_CSV.open()):
+    for fp in capture_files():
+        for r in csv.DictReader(fp.open()):
             if r.get("ok") != "1":
                 continue
             last[r["event_id"]] = max(last.get(r["event_id"], ""), r["captured_at"])
