@@ -405,3 +405,6 @@ captured_at,bucket,event_id,title,datetime_local,datetime_utc,home_team,away_tea
 2026-10-01T02:20:59+00:00,mlb_postseason,18343388,"Los Angeles Dodgers at Atlanta Braves - NLDS (Game 4, Home Game 2)",2026-10-07T03:30:00,2026-10-07T07:30:00,Atlanta Braves,,seatgeek,200,1,,1077,6222,109,221,305.69,3560
 2026-10-01T02:20:59+00:00,mlb_postseason,18343189,"Cleveland Guardians at Chicago White Sox - ALDS (Game 3, Home Game 1)",2026-10-07T03:30:00,2026-10-07T08:30:00,Chicago White Sox,Cleveland Guardians,seatgeek,200,1,,1065,3989,153,433,545.53,11735
 2026-10-01T02:20:59+00:00,mlb_postseason,18343416,"Milwaukee Brewers at Chicago Cubs - NLDS (Game 4, Home Game 2)",2026-10-07T03:30:00,2026-10-07T08:30:00,Chicago Cubs,,seatgeek,200,1,,723,3115,218,496,806.64,8992
+2026-10-01T03:00:55+00:00,mlb_postseason,18343528,"Milwaukee Brewers at San Diego Padres - NLDS (Game 4, Home Game 2)",2026-10-07T03:30:00,2026-10-07T10:30:00,,,seatgeek,200,1,,1181,5124,133,383,427.59,4745
+2026-10-01T03:00:55+00:00,nfl_metlife,18014026,Cleveland Browns at New York Jets,2026-10-11T13:00:00,2026-10-11T17:00:00,New York Jets,Cleveland Browns,seatgeek,200,1,,1097,3812,70,150,289.47,91522
+2026-10-01T03:00:55+00:00,mlb_postseason,18343198,"TBD at Chicago White Sox - ALCS (Game 4, Home Game 2)",2026-10-13T03:30:00,2026-10-13T08:30:00,,,seatgeek,200,1,,265,1230,245,531,903.11,13040
