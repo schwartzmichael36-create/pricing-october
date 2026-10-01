@@ -414,3 +414,6 @@ captured_at,bucket,event_id,title,datetime_local,datetime_utc,home_team,away_tea
 2026-10-01T05:00:29+00:00,mlb_postseason,18343421,TBD at Chicago Cubs - NLCS (Home Game 2),2026-10-14T03:30:00,2026-10-14T08:30:00,Chicago Cubs,,seatgeek,200,1,,240,774,392,1255,1914.46,10669
 2026-10-01T05:00:29+00:00,mlb_postseason,18343505,TBD at Los Angeles Dodgers - NLCS (Home Game 2),2026-10-14T03:30:00,2026-10-14T10:30:00,Los Angeles Dodgers,,seatgeek,200,1,,1987,9878,174,276,503.42,20521
 2026-10-01T05:00:29+00:00,mlb_postseason,18343533,TBD at San Diego Padres - NLCS (Home Game 2),2026-10-14T03:30:00,2026-10-14T10:30:00,San Diego Padres,,seatgeek,200,1,,791,3949,289,520,621.71,5929
+2026-10-01T06:00:26+00:00,mlb_postseason,18343032,TBD at New York Yankees - ALCS (Home Game 3),2026-10-17T03:30:00,2026-10-17T07:30:00,New York Yankees,,seatgeek,200,1,,576,2522,246,623,1182.05,11988
+2026-10-01T06:00:26+00:00,mlb_postseason,18343172,TBD at Cleveland Guardians - ALCS (Home Game 3),2026-10-17T03:30:00,2026-10-17T07:30:00,Cleveland Guardians,,seatgeek,200,1,,530,2609,257,506,530.84,1839
+2026-10-01T06:00:26+00:00,mlb_postseason,18343396,TBD at Atlanta Braves - NLCS (Home Game 3),2026-10-17T03:30:00,2026-10-17T07:30:00,Atlanta Braves,,seatgeek,200,1,,838,4757,201,446,802.95,17780
