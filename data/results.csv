@@ -3,3 +3,10 @@ ALWC1,1,2026-09-29,New York Yankees,Boston Red Sox,1,0,0,NYY,Yankees 9-0
 ALWC2,1,2026-09-29,Houston Astros,Chicago White Sox,1,0,0,CWS,White Sox 6-3; road team wins
 NLWC1,1,2026-09-29,Atlanta Braves,Philadelphia Phillies,1,0,0,ATL,Braves 5-3; Riley 3-run HR 8th
 NLWC2,1,2026-09-29,San Diego Padres,Chicago Cubs,1,0,0,SD,Padres 8-0; King near no-hitter
+ALWC1,2,2026-09-30,New York Yankees,Boston Red Sox,1,1,0,NYY,Yankees 9-2; sweep
+ALWC2,2,2026-09-30,Houston Astros,Chicago White Sox,1,0,1,CWS,White Sox 7-3; road sweep
+NLWC1,2,2026-09-30,Atlanta Braves,Philadelphia Phillies,1,1,0,PHI,Phillies 4-3; forces Game 3
+NLWC2,2,2026-09-30,San Diego Padres,Chicago Cubs,1,1,0,SD,Padres 4-1; sweep
+ALWC1,3,2026-10-01,New York Yankees,Boston Red Sox,0,2,0,,not needed; cancelled after sweep
+ALWC2,3,2026-10-01,Houston Astros,Chicago White Sox,0,0,2,,not needed; home team swept
+NLWC2,3,2026-10-01,San Diego Padres,Chicago Cubs,0,2,0,,not needed; cancelled after sweep

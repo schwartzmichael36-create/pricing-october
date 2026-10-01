@@ -47,7 +47,7 @@ NOW = datetime.now(timezone.utc)
 # Budget after the 2026-09-30 overspend (≈466 of 1,000 used): 30 for the last Wild Card day,
 # then 18/day through the plan's Oct 28 renewal, when 1,000 fresh credits arrive for the WS.
 _day = NOW.strftime("%Y-%m-%d")
-DAILY_CAP = 30 if _day <= "2026-10-01" else (18 if _day < "2026-10-28" else 32)
+DAILY_CAP = 38 if _day <= "2026-10-01" else (18 if _day < "2026-10-28" else 32)   # +8 on Oct 1 for the one forced Game 3
 CAPTURED_AT = NOW.isoformat(timespec="seconds")
 
 CAP_CSV = DATA / "captures.csv"
@@ -118,7 +118,7 @@ def per_run_room(last: dict, today: int) -> int:
     """
     newest = max(last.values(), default=None)
     gap_h = min(8.0, hours_since(newest)) if newest else 8.0
-    share = max(3, round(DAILY_CAP * gap_h / 24))
+    share = max(1, round(DAILY_CAP * gap_h / 24))   # a floor of 3 spent the whole day by 07:00Z on Oct 1
     return max(0, min(share, DAILY_CAP - today))
 
 
