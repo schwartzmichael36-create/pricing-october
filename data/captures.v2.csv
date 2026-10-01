@@ -411,3 +411,6 @@ captured_at,bucket,event_id,title,datetime_local,datetime_utc,home_team,away_tea
 2026-10-01T04:00:29+00:00,mlb_postseason,18343504,TBD at Los Angeles Dodgers - NLCS (Home Game 1),2026-10-13T03:30:00,2026-10-13T10:30:00,Los Angeles Dodgers,,seatgeek,200,1,,2012,9938,190,322,534.81,20521
 2026-10-01T04:00:29+00:00,mlb_postseason,18343532,TBD at San Diego Padres - NLCS (Home Game 1),2026-10-13T03:30:00,2026-10-13T10:30:00,San Diego Padres,,seatgeek,200,1,,42,138,283,1118.5,1800.62,4745
 2026-10-01T04:00:29+00:00,mlb_postseason,18528220,TBD at Philadelphia Phillies - NLCS (Home Game 2),2026-10-14T03:30:00,2026-10-14T07:30:00,Philadelphia Phillies,,seatgeek,200,1,,33,122,633,2237,2218.42,5929
+2026-10-01T05:00:29+00:00,mlb_postseason,18343421,TBD at Chicago Cubs - NLCS (Home Game 2),2026-10-14T03:30:00,2026-10-14T08:30:00,Chicago Cubs,,seatgeek,200,1,,240,774,392,1255,1914.46,10669
+2026-10-01T05:00:29+00:00,mlb_postseason,18343505,TBD at Los Angeles Dodgers - NLCS (Home Game 2),2026-10-14T03:30:00,2026-10-14T10:30:00,Los Angeles Dodgers,,seatgeek,200,1,,1987,9878,174,276,503.42,20521
+2026-10-01T05:00:29+00:00,mlb_postseason,18343533,TBD at San Diego Padres - NLCS (Home Game 2),2026-10-14T03:30:00,2026-10-14T10:30:00,San Diego Padres,,seatgeek,200,1,,791,3949,289,520,621.71,5929
