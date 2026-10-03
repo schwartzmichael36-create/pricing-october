@@ -2,23 +2,27 @@
 Resale listing captures via tickets.dev, on a credit budget.
 
 Runs every hour after scrape.py. Reads the latest SeatGeek snapshot to find the
-games currently listed, decides which ones are "due" for a capture based on how
-close they are to first pitch, and captures them in priority order until the
-daily cap is hit.
+games currently listed and captures each one as it crosses a fixed point before
+first pitch, so every game ends up with the same price curve:
 
-Cadence (per game):
-  <= 12 h to first pitch   every 3 h
-  <= 48 h                  every 6 h
-  <= 7 days                once a day
-  further out              every 3 days
-NFL (Giants/Jets) games:   once a day, only inside 14 days of kickoff
+  MLB postseason   72 h, 48 h, 24 h, 12 h, 6 h, 3 h, 1 h   (7 captures per game)
+  NFL (Giants/Jets) 72 h, 24 h, 3 h                          (December extension)
 
-Budget: DAILY_CAP captures per UTC day (1,000 credits / ~34 days ≈ 29/day),
-paced across runs in proportion to the time since the last run.
+A game is due when it has crossed a milestone and hasn't been captured since
+crossing it. Closest first pitch goes first; New York games win ties.
 
-Outputs (append-only):
-  data/captures.csv   one row per capture: stats (get-in, median, count …)
-  data/listings.csv   one row per listing per capture (section, row, price …)
+Why milestones: spending "N per day, evenly" burned each UTC day's credits
+overnight (the UTC day starts at 8 pm ET) and left nothing for the final hours
+before first pitch, which is where prices move.
+
+Guards (all three must allow a capture):
+  DAILY_CAP    captures per UTC day
+  CYCLE_CAP    captures per tickets.dev billing cycle (1,000 credits, renews on the 28th)
+  40 minutes   wall-clock per run, so a run never overlaps the next one
+
+Outputs (append-only, versioned if the columns change):
+  data/captures*.csv   one row per capture: stats (get-in, median, count …)
+  data/listings*.csv   one row per listing per capture (section, row, price …)
 
 Key: TICKETSDEV_API_KEY (.env locally, GitHub secret in Actions).
 Run:  python capture.py            (live)
@@ -26,8 +30,8 @@ Run:  python capture.py            (live)
 """
 
 import csv
+import os
 import sys
-from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -35,20 +39,19 @@ import requests
 
 from scrape import DATA, ROOT, append_rows, load_dotenv
 
-import os
-
 load_dotenv(ROOT / ".env")
 KEY = os.environ.get("TICKETSDEV_API_KEY", "").strip()
 DRY = "--dry-run" in sys.argv
 
 NOW = datetime.now(timezone.utc)
-# Wild Card round (Sep 29 – Oct 1): 12 games in three days, so a bigger day. 32 after that.
-# Unused credits roll over, and the DS/LCS/WS days have far fewer games listed.
-# Budget after the 2026-09-30 overspend (≈466 of 1,000 used): 30 for the last Wild Card day,
-# then 18/day through the plan's Oct 28 renewal, when 1,000 fresh credits arrive for the WS.
-_day = NOW.strftime("%Y-%m-%d")
-DAILY_CAP = 38 if _day <= "2026-10-01" else (18 if _day < "2026-10-28" else 32)   # +8 on Oct 1 for the one forced Game 3
 CAPTURED_AT = NOW.isoformat(timespec="seconds")
+
+MLB_MILESTONES = (72, 48, 24, 12, 6, 3, 1)      # hours before first pitch
+NFL_MILESTONES = (72, 24, 3)
+
+DAILY_CAP = 40                                   # safety net, not the pacing mechanism
+CYCLE_CAP = 970                                  # of 1,000 credits per billing cycle
+CYCLE_DAY = 28                                   # plan bought Sep 28; renews on the 28th
 
 CAP_CSV = DATA / "captures.csv"
 LIST_CSV = DATA / "listings.csv"
@@ -57,6 +60,14 @@ LIST_CSV = DATA / "listings.csv"
 def parse_iso(s: str) -> datetime:
     d = datetime.fromisoformat(s)
     return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+
+
+def cycle_start() -> str:
+    """ISO date the current billing cycle began (the most recent 28th)."""
+    y, m = NOW.year, NOW.month
+    if NOW.day < CYCLE_DAY:
+        y, m = (y, m - 1) if m > 1 else (y - 1, 12)
+    return f"{y:04d}-{m:02d}-{CYCLE_DAY:02d}"
 
 
 def latest_snapshot() -> list[dict]:
@@ -75,60 +86,46 @@ def capture_files() -> list[Path]:
     return sorted(DATA.glob("captures.csv")) + sorted(DATA.glob("captures.v*.csv"))
 
 
-def capture_history() -> tuple[dict, int]:
-    """Last capture time per event, and how many captures already happened today (UTC)."""
-    last, today = {}, 0
+def capture_history() -> tuple[dict, int, int]:
+    """Last capture time per event; captures today (UTC); captures this billing cycle."""
+    last, today, cycle = {}, 0, 0
+    since = cycle_start()
     for fp in capture_files():
         for r in csv.DictReader(fp.open()):
             if r.get("ok") != "1":
                 continue
             last[r["event_id"]] = max(last.get(r["event_id"], ""), r["captured_at"])
-            if r["captured_at"][:10] == CAPTURED_AT[:10]:
-                today += 1
-    return last, today
+            today += r["captured_at"][:10] == CAPTURED_AT[:10]
+            cycle += r["captured_at"][:10] >= since
+    return last, today, cycle
 
 
-def hours_since(last_iso) -> float:
-    return 1e9 if not last_iso else (NOW - parse_iso(last_iso)).total_seconds() / 3600
+def start_time(row: dict) -> datetime:
+    return parse_iso(row.get("datetime_utc") or row["datetime_local"])   # old snapshots lack datetime_utc
 
 
 def due(row: dict, last_iso) -> bool:
-    start = row.get("datetime_utc") or row["datetime_local"]   # older snapshots lack datetime_utc
-    h_to_game = (parse_iso(start) - NOW).total_seconds() / 3600
-    if h_to_game < -4:                       # game is over
+    """Has this game crossed a milestone it hasn't been captured at yet?"""
+    start = start_time(row)
+    h_to_game = (start - NOW).total_seconds() / 3600
+    if h_to_game < -0.5:                                  # under way or over
         return False
-    since = hours_since(last_iso)
-    if row["bucket"] == "nfl_metlife":
-        return h_to_game <= 14 * 24 and since >= 23
-    if h_to_game <= 12:
-        return since >= 2.75
-    if h_to_game <= 48:
-        return since >= 5.75
-    if h_to_game <= 7 * 24:
-        return since >= 23
-    return since >= 71                       # placeholders a week+ out: every 3 days
+    marks = NFL_MILESTONES if row["bucket"] == "nfl_metlife" else MLB_MILESTONES
+    crossed = [m for m in marks if h_to_game <= m]
+    if not crossed:                                       # more than 72 h out
+        return False
+    if not last_iso:
+        return True
+    h_at_last = (start - parse_iso(last_iso)).total_seconds() / 3600
+    return h_at_last > min(crossed)                       # last look was before the newest milestone
 
 
-def per_run_room(last: dict, today: int) -> int:
-    """Pace the daily budget across runs, whatever cadence GitHub actually gives us.
-
-    GitHub's cron is best-effort: overnight it fired every 4–6 hours instead of hourly, and a
-    single run spent the whole day's 32 credits. So each run may spend only its share of the
-    day, proportional to the time since the previous run (min 3, max 8 hours' worth).
-    """
-    newest = max(last.values(), default=None)
-    gap_h = min(8.0, hours_since(newest)) if newest else 8.0
-    share = max(1, round(DAILY_CAP * gap_h / 24))   # a floor of 3 spent the whole day by 07:00Z on Oct 1
-    return max(0, min(share, DAILY_CAP - today))
-
-
-def plan() -> list[dict]:
-    last, today = capture_history()
-    snap = latest_snapshot()
-    cands = [r for r in snap if due(r, last.get(r["event_id"]))]
-    # closest to first pitch first; New York games win ties
-    cands.sort(key=lambda r: (r["datetime_local"], "New York" not in (r.get("home_team") or "")))
-    return cands[:per_run_room(last, today)]
+def plan() -> tuple[list[dict], int, int]:
+    last, today, cycle = capture_history()
+    cands = [r for r in latest_snapshot() if due(r, last.get(r["event_id"]))]
+    cands.sort(key=lambda r: (start_time(r), "New York" not in (r.get("home_team") or "")))
+    room = max(0, min(DAILY_CAP - today, CYCLE_CAP - cycle))
+    return cands[:room], today, cycle
 
 
 def do_capture(row: dict) -> tuple[dict, list[dict]]:
@@ -170,11 +167,11 @@ def do_capture(row: dict) -> tuple[dict, list[dict]]:
 
 
 if __name__ == "__main__":
-    todo = plan()
-    _, spent = capture_history()
-    print(f"{CAPTURED_AT}  due: {len(todo)}  spent today: {spent}/{DAILY_CAP}")
+    todo, spent, cycle = plan()
+    print(f"{CAPTURED_AT}  due: {len(todo)}  today: {spent}/{DAILY_CAP}  cycle since {cycle_start()}: {cycle}/{CYCLE_CAP}")
     for r in todo:
-        print(f"   {r['datetime_local'][:16]}  {r['title'][:70]}")
+        h = (start_time(r) - NOW).total_seconds() / 3600
+        print(f"   {h:5.1f} h  {r['title'][:70]}")
     if DRY:
         sys.exit(0)
     if not KEY:
