@@ -11,3 +11,9 @@ ALWC1,3,2026-10-01,New York Yankees,Boston Red Sox,0,2,0,,not needed; cancelled 
 ALWC2,3,2026-10-01,Houston Astros,Chicago White Sox,0,0,2,,not needed; home team swept
 NLWC2,3,2026-10-01,San Diego Padres,Chicago Cubs,0,2,0,,not needed; cancelled after sweep
 NLWC1,3,2026-10-01,Atlanta Braves,Philadelphia Phillies,1,1,1,ATL,Braves win deciding game; Harris 3-run HR in 1st; only Wild Card series to go three
+ALDS1,1,2026-10-03,Tampa Bay Rays,New York Yankees,1,0,0,TB,Rays 1-0
+ALDS2,1,2026-10-03,Cleveland Guardians,Chicago White Sox,1,0,0,CWS,White Sox 3-0; road team wins
+NLDS1,1,2026-10-03,Milwaukee Brewers,San Diego Padres,1,0,0,MIL,Brewers 3-2
+NLDS2,1,2026-10-03,Los Angeles Dodgers,Atlanta Braves,1,0,0,LAD,Dodgers 5-3
+NLDS1,2,2026-10-04,Milwaukee Brewers,San Diego Padres,1,1,0,MIL,Brewers 4-3; Chourio late grand slam; lead 2-0
+NLDS2,2,2026-10-04,Los Angeles Dodgers,Atlanta Braves,1,1,0,ATL,Braves 3-2; series tied 1-1
