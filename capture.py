@@ -32,6 +32,7 @@ Run:  python capture.py            (live)
 import csv
 import os
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -129,12 +130,16 @@ def plan() -> tuple[list[dict], int, int]:
 
 
 def do_capture(row: dict) -> tuple[dict, list[dict]]:
-    r = requests.get(
-        "https://api.tickets.dev/v1/capture",
-        params={"url": row["url"]},
-        headers={"x-api-key": KEY},
-        timeout=90,
-    )
+    for attempt in range(3):                              # 429 = their capture capacity is busy, not our quota;
+        r = requests.get(                                  # a failed capture is never charged, so retry briefly
+            "https://api.tickets.dev/v1/capture",
+            params={"url": row["url"]},
+            headers={"x-api-key": KEY},
+            timeout=90,
+        )
+        if r.status_code != 429:
+            break
+        time.sleep(int(r.headers.get("Retry-After", "20")) if attempt < 2 else 0)
     base = {
         "captured_at": CAPTURED_AT,
         "bucket": row["bucket"],
