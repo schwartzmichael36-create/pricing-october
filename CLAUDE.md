@@ -9,9 +9,12 @@ Hourly ticket-price tracker for the 2026 MLB postseason. Michael Schwartz's hero
 - `build_db.py` — rebuilds `data/pricing.db` (SQLite) from the CSVs; adds the `resale` view with `hours_to_game`.
 - `.github/workflows/scrape.yml` — cron `7 * * * *`, commits new rows. Secrets: `SEATGEEK_CLIENT_ID`, `TM_API_KEY`.
 - `data/results.csv` — hand-kept dimension: one row per game (series, game_no, date, home, away, played, home_w_before, home_l_before, winner, note). Michael fills it from the bracket after each game.
+- `make_workbook.py` → `Pricing-October-Data.xlsx`: formatted Excel tables (Results, Latest Prices, Captures, Games, Ticketmaster Status) for reading, never for editing data.
+- `docs/journal.js` → `Pricing-October-Journals.docx`: the project journal; add an entry per day Michael asks.
 - `analysis/` — saved SQL (Q0–Q7 per blueprint p. 9) and `model.ipynb`. `dashboard/`, `memo/` — outputs.
 
 ## Rules
+- **Never open or save `data/*.csv` in Excel/Numbers.** Saving rewrites every row (happened 2026-10-07; restored from the repo). The formatted view is `Pricing-October-Data.xlsx`, regenerated with `python build_db.py && python make_workbook.py`.
 - Keys live only in `.env` (git-ignored) and GitHub Actions secrets. Never print or commit them. Never paste them into chat.
 - Never create accounts for Michael (SeatGeek, Ticketmaster, GitHub, Tableau). He does those.
 - Data files are append-only. Never rewrite or dedupe `data/*.csv` in place; fix in `build_db.py` instead.
