@@ -186,6 +186,24 @@ const children = [
       "ALDS Game 3s: Yankees at home facing elimination, 7 pm ET; Guardians at White Sox.",
     ]],
   ]),
+  ...entry("Wed Oct 7 · ALDS elimination games", [
+    ["What happened", [
+      "Check-in: 33 of 33 runs green. 620 captures, 779,300 listings, ~380 credits left.",
+      "The data CSVs had been opened and saved in Excel, which rewrote every row locally. The GitHub copy was intact, so I restored from it; nothing lost. New rule: never open the CSVs in Excel.",
+      "Built Pricing-October-Data.xlsx: five formatted Excel tables (Results, Latest Prices, Captures, Games, Ticketmaster Status) regenerated from the database. That is the file to open from now on.",
+      "Logged the NLDS Game 3s (results.csv at 22 rows): Dodgers 3–1 Braves (LAD leads 2–1); Padres 4–3 Brewers, staying alive (MIL leads 2–1).",
+    ]],
+    ["What the data says", [
+      "The Yankees elimination game answered the question. Yankee Stadium Game 3, down 0–2: $262 median at 72 hours out (before the Game 2 loss), $207 at 24 hours, $182 at 6 hours. Get-in fell from $121 to $73. About a 30% drop, same direction as the Padres.",
+      "So far, facing elimination is priced as a discount, even in New York.",
+      "The opposite case: the White Sox’s first home playoff game in years sat at a $266 get-in and $513 median two hours before first pitch, the most expensive ticket of the postseason. Scarcity of the moment beats market size.",
+    ]],
+    ["Status", "Series: Rays lead Yankees 2–0 (Game 3 tonight at Yankee Stadium), White Sox lead Guardians 2–0, Dodgers lead Braves 2–1, Brewers lead Padres 2–1."],
+    ["Tomorrow", [
+      "First SQL session, about an hour: the health check (captures per game) and the price-decay curve (median get-in by hours-to-game), written by me with Claude on the Captures table.",
+      "Have SQLBolt 7–12 finished tonight.",
+    ]],
+  ]),
 ];
 
 const doc = new Document({
