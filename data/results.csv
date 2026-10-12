@@ -21,3 +21,14 @@ ALDS1,2,2026-10-05,Tampa Bay Rays,New York Yankees,1,1,0,TB,Rays 5-2; lead 2-0; 
 ALDS2,2,2026-10-05,Cleveland Guardians,Chicago White Sox,1,0,1,CWS,White Sox 4-3; lead 2-0; Guardians face elimination in Chicago
 NLDS2,3,2026-10-06,Atlanta Braves,Los Angeles Dodgers,1,1,1,LAD,Dodgers 3-1; Hernandez 2-run HR; Dodgers lead 2-1
 NLDS1,3,2026-10-06,San Diego Padres,Milwaukee Brewers,1,0,2,SD,Padres 4-3; Cronenworth HR; King save; Brewers lead 2-1
+ALDS1,3,2026-10-07,New York Yankees,Tampa Bay Rays,1,0,2,TB,Rays 4-3; sweep 3-0; Yankees eliminated at home
+ALDS1,4,2026-10-08,New York Yankees,Tampa Bay Rays,0,0,3,,not needed; cancelled after sweep
+ALDS1,5,2026-10-10,Tampa Bay Rays,New York Yankees,0,3,0,,not needed
+ALDS2,3,2026-10-07,Chicago White Sox,Cleveland Guardians,1,2,0,CLE,Guardians 9-3
+ALDS2,4,2026-10-08,Chicago White Sox,Cleveland Guardians,1,2,1,CLE,Guardians 9-5; six-run 6th; forces Game 5
+ALDS2,5,2026-10-10,Cleveland Guardians,Chicago White Sox,1,2,2,CLE,Guardians 2-0; win series 3-2 after losing first two at home
+NLDS2,4,2026-10-07,Atlanta Braves,Los Angeles Dodgers,1,1,2,LAD,Dodgers 4-1; win series 3-1
+NLDS2,5,2026-10-09,Los Angeles Dodgers,Atlanta Braves,0,3,1,,not needed
+NLDS1,4,2026-10-07,San Diego Padres,Milwaukee Brewers,1,1,2,MIL,Brewers 3-1; win series 3-1; Mitchell robs Machado HR
+NLDS1,5,2026-10-09,Milwaukee Brewers,San Diego Padres,0,3,1,,not needed
+NLCS,1,2026-10-11,Milwaukee Brewers,Los Angeles Dodgers,1,0,0,MIL,Brewers 2-1; Turang HR

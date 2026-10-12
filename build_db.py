@@ -69,11 +69,47 @@ if __name__ == "__main__":
             SELECT c.*,
                    c.get_in_price AS lowest_price,
                    s.datetime_utc AS start_utc,
-                   (julianday(s.datetime_utc) - julianday(c.captured_at)) * 24 AS hours_to_game
+                   (julianday(s.datetime_utc) - julianday(c.captured_at)) * 24 AS hours_to_game,
+                   -- parsed from the SeatGeek title so queries don't have to
+                   CASE WHEN c.title LIKE '%Wild Card%'    THEN 'WC'
+                        WHEN c.title LIKE '%World Series%' THEN 'WS'
+                        WHEN c.title LIKE '%LCS%'          THEN 'LCS'
+                        WHEN c.title LIKE '%DS%'           THEN 'DS' END AS round,
+                   CAST(substr(c.title, instr(c.title, '(Game ') + 6, 1) AS INT) AS game_no,
+                   CASE WHEN c.title LIKE '%If Necessary%' THEN 1 ELSE 0 END AS if_necessary,
+                   CASE WHEN c.title LIKE 'TBD at %' THEN 1 ELSE 0 END AS opponent_tbd
             FROM captures c
             LEFT JOIN start s USING (event_id)
             WHERE c.ok = '1' AND c.get_in_price IS NOT NULL
         """)
+    # Team codes used in results.csv's winner column.
+    conn.execute("DROP TABLE IF EXISTS teams")
+    conn.execute("CREATE TABLE teams (code TEXT PRIMARY KEY, name TEXT)")
+    conn.executemany("INSERT INTO teams VALUES (?, ?)", [
+        ("NYY", "New York Yankees"), ("BOS", "Boston Red Sox"), ("HOU", "Houston Astros"),
+        ("CWS", "Chicago White Sox"), ("ATL", "Atlanta Braves"), ("PHI", "Philadelphia Phillies"),
+        ("SD", "San Diego Padres"), ("CHC", "Chicago Cubs"), ("TB", "Tampa Bay Rays"),
+        ("CLE", "Cleveland Guardians"), ("MIL", "Milwaukee Brewers"), ("LAD", "Los Angeles Dodgers"),
+    ])
+
+    # One row per game with its result: resale joined to the hand-kept results table.
+    # Join on home team + round + game number (dates are unreliable: an 8 pm ET game is the next day in UTC).
+    conn.execute("DROP VIEW IF EXISTS game_results")
+    conn.execute("""
+        CREATE VIEW game_results AS
+        SELECT r.*, x.series, x.played, x.home_w_before, x.home_l_before, x.winner, x.note,
+               CASE WHEN x.winner IS NULL OR x.winner = '' THEN NULL
+                    WHEN t.name = x.home THEN 1 ELSE 0 END AS home_won
+        FROM resale r
+        LEFT JOIN results x
+          ON x.home = r.home_team
+         AND x.game_no = r.game_no
+         AND ((r.round = 'WC'  AND x.series LIKE '%WC%')
+           OR (r.round = 'DS'  AND x.series LIKE '%DS%')
+           OR (r.round = 'LCS' AND x.series LIKE '%LCS%')
+           OR (r.round = 'WS'  AND x.series = 'WS'))
+        LEFT JOIN teams t ON t.code = x.winner
+    """)
     conn.commit()
     conn.close()
     print(f"built {DB}")

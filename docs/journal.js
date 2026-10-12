@@ -204,6 +204,28 @@ const children = [
       "Have SQLBolt 7–12 finished tonight.",
     ]],
   ]),
+  ...entry("Thu Oct 8 – Mon Oct 12 · Division Series close, LCS open, the SQL gets written", [
+    ["What happened", [
+      "Pipeline: 148 of 148 runs green across five days, 126 distinct hours with a run. Nothing missed. 671 captures, 819,753 listings, ~330 credits left (renews Oct 28).",
+      "Results logged through NLCS Game 1 (results.csv at 33 rows). Rays swept the Yankees 3–0 (Game 3 4–3 at Yankee Stadium). Guardians came back from 0–2 to beat the White Sox 3–2 (9–3, 9–5, then 2–0 at home). Dodgers over Braves 3–1. Brewers over Padres 3–1. NLCS: Brewers 2–1 Dodgers in Game 1. ALCS Rays–Guardians opens tonight.",
+      "Claude wrote the analysis layer so I can read working queries on my own data instead of toy tables: analysis/00–06 (health, decay curve, rivalry premium, if-necessary, series state, elimination games, window-function velocity) plus run_all.py to execute them. Each file has the question and a plain-English walkthrough at the top and the answer at the bottom.",
+      "Database got two helper views: `resale` now carries round, game number, if-necessary and TBD flags parsed from the title; `game_results` joins every capture to the results table so a query can ask ‘did the home team win the previous game?’ without string gymnastics. Plus a `teams` lookup table.",
+      "A real SQL lesson surfaced: the view has a column named `bucket`, and a query alias with the same name silently grouped by the wrong thing. Aliases must not shadow columns.",
+    ]],
+    ["What the data says", [
+      "Decay curve: Wild Card get-in $72 at 24–48 h → $29 in the final hour; Division Series $132 → $106. Prices fall into first pitch in every round, listings thin by two-thirds, and the last hour is the cheapest hour.",
+      "Rivalry premium: Yankees–Red Sox Game 1 traded at 2.3× the other Wild Card hosts’ get-in 32 hours out and 3.4× at 9 hours out. The gap widened; the others cut to clear, New York didn’t have to.",
+      "If-necessary: there is NO discount versus Game 1. Maybe-games traded at par or above (Yankees +17%, Astros +56%, Brewers G5 +27%) because stakes rise through a series. The discount shows only within a game, before versus after confirmation: the Braves’ forced Game 3 went +21% → +66% → +174% versus Game 1 once it became real. Framing for the memo: uncertainty is priced as a delay, not a discount.",
+      "Series state: after a home loss, the next home game’s median fell ~26% on average; after a home win, ~10%. Bad news moves prices 2.5× more than good news.",
+      "Elimination games are priced like ordinary games; the clincher is the premium (+130% in the DS), though both DS clinchers were in Chicago, so the LCS has to separate clinch from market.",
+      "Velocity: the fastest listing drops all come in the final 6 hours and arrive with falling medians. Listings vanish because sellers cut and clear, not because buyers bid up. Listing count is a supply signal.",
+    ]],
+    ["Status", "Division Series complete. LCS: Brewers lead Dodgers 1–0; Rays–Guardians Game 1 tonight. Queries 0–6 written and answered; the regression (Q7) and the Tableau dashboard are next, on the blueprint’s dates."],
+    ["Me, this week", [
+      "SQL: finish SQLBolt and Kaggle Intro by Friday. Then run `python3 analysis/run_all.py`, read each file top to bottom, and change one thing in each query to see what moves. That is the manual work from Friday on.",
+      "Paper bracket.",
+    ]],
+  ]),
 ];
 
 const doc = new Document({
