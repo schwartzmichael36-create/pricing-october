@@ -2,3 +2,5 @@
 data/pricing.db
 __pycache__/
 .DS_Store
+docs/node_modules/
+docs/package*.json
