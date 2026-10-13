@@ -226,6 +226,23 @@ const children = [
       "Paper bracket.",
     ]],
   ]),
+  ...entry("Tue Oct 13 · LCS Game 2s", [
+    ["What happened", [
+      "Check-in: 26 of 26 runs green overnight. 677 captures, 825,517 listings, ~320 credits left.",
+      "One capture came back with zero listings (a bad read, not a sellout). Added a guard: those count as failed, get re-tried, and the analysis ignores them.",
+      "Logged NLCS Game 2 (Brewers 7–4 Dodgers; Milwaukee leads 2–0) and ALCS Game 1 (Guardians 7–3 Rays; Cleveland rallied from 0–2, 14 hits). results.csv at 35 rows.",
+    ]],
+    ["What the data says", [
+      "The first LCS game produced the clearest counter-example yet to ‘the last hour is the cheapest hour.’ Brewers–Dodgers Game 1 in Milwaukee: get-in $191 at 72 hours out, $220 at 6 hours, $260 at 3, $300 in the final hour, with listings falling from 551 to 83. The median rose from $410 to $516 over the last day.",
+      "Game 2 did the same, more gently ($137 → $179 in the last day). Tampa followed the normal decay ($94 → $61).",
+      "So the decay curve has a condition: it holds while there is inventory to clear. When a market actually sells out, the last hour is the most expensive hour. Small building, 2–0 at home, true sellout. This is both a memo finding and the counter-argument to expect in an interview.",
+    ]],
+    ["Status", "NLCS: Brewers lead Dodgers 2–0, Game 3 in Los Angeles tomorrow. ALCS: Guardians lead Rays 1–0, Game 2 tonight in Tampa."],
+    ["Tomorrow", [
+      "SQL day 2: SQLBolt lessons 7–12 (JOINs, NULLs, expressions, GROUP BY).",
+      "Results for NLCS Game 3 and ALCS Game 2.",
+    ]],
+  ]),
 ];
 
 const doc = new Document({
