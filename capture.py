@@ -158,6 +158,9 @@ def do_capture(row: dict) -> tuple[dict, list[dict]]:
                 "get_in_price": None, "median_price": None, "avg_price": None, "max_price": None}, []
     body = r.json()
     st = body.get("stats") or {}
+    if not st.get("listingCount"):                        # 2026-10-13: a 200 with zero listings happened once;
+        return {**base, "error": "empty capture (0 listings)", "listing_count": 0, "ticket_count": 0,   # treat as failed
+                "get_in_price": None, "median_price": None, "avg_price": None, "max_price": None}, []
     cap = {**base, "ok": "1", "error": "",
            "listing_count": st.get("listingCount"), "ticket_count": st.get("ticketCount"),
            "get_in_price": st.get("getInPrice"), "median_price": st.get("medianPrice"),

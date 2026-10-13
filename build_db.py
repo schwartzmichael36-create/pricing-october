@@ -80,7 +80,7 @@ if __name__ == "__main__":
                    CASE WHEN c.title LIKE 'TBD at %' THEN 1 ELSE 0 END AS opponent_tbd
             FROM captures c
             LEFT JOIN start s USING (event_id)
-            WHERE c.ok = '1' AND c.get_in_price IS NOT NULL
+            WHERE c.ok = '1' AND c.get_in_price IS NOT NULL AND c.listing_count > 0   -- empty reads are not data
         """)
     # Team codes used in results.csv's winner column.
     conn.execute("DROP TABLE IF EXISTS teams")
