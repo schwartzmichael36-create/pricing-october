@@ -243,6 +243,33 @@ const children = [
       "Results for NLCS Game 3 and ALCS Game 2.",
     ]],
   ]),
+  ...entry("Wed Oct 14 – Thu Oct 22 · LCS, the World Series matchup, and a decision", [
+    ["What happened", [
+      "Pipeline: 237 of 237 runs green across nine days. It has not needed a hand since Oct 7.",
+      "Results logged through the ALCS (results.csv at 46 rows). Brewers swept the Dodgers 4–0 (first World Series since 1982; defending champs out). Rays beat the Guardians 4–2, clinching 7–3 in Game 6. World Series: Rays at Brewers, Game 1 Oct 23 in Milwaukee.",
+      "Decision: with school taking priority, I’m not learning SQL this fall. This project becomes a data-collection project for now; the analysis happens when I pick up SQL. I cancelled the tickets.dev renewal (Oct 28), so resale captures end around Oct 27 after World Series Games 1–3. The free SeatGeek and Ticketmaster snapshots keep running through the end of the Series.",
+    ]],
+    ["What the data says", [
+      "The Dodgers’ elimination game in a 56,000-seat stadium decayed hard (get-in $92 → $70, median $223 → $101, 2,368 → 541 listings). Milwaukee’s sellout went the other way the same week. One variable decides the curve: whether the inventory clears.",
+      "The World Series opener in Milwaukee listed at a $2,836 get-in and $4,545 median three days out, with ~250 listings. The cheapest Wild Card ticket three weeks earlier was $18.",
+    ]],
+    ["The dataset, as it stands", table(["What", "Count"], [
+      ["Resale captures (one price snapshot of one game)", "738"],
+      ["Individual listings (section, row, price, fees)", "871,409"],
+      ["SeatGeek game snapshots (hourly, every listed game)", "40,813"],
+      ["Ticketmaster status rows", "25,364"],
+      ["Postseason games with full price curves", "74"],
+      ["Completed series", "11 (plus the World Series in progress)"],
+      ["Hand-logged results", "46"],
+      ["Size", "234 MB, all on GitHub"],
+    ], [6000, 3360])],
+    ["Why that is enough", "The project’s questions are answered by comparing series, and there are eleven complete ones across three rounds. The World Series is one more, and an unusual one. Losing its last games costs a footnote, not a finding. The limit was never data; it was my time to analyze it, which is now deferred on purpose. A clean, documented ‘collected Sep 28 – Oct 27’ beats a ragged one."],
+    ["What happens next", [
+      "Oct 28: the hourly job switches to snapshots-only so it stops attempting captures.",
+      "After the last World Series game: close-out. Final results rows, refreshed workbook, a README stating exactly what the dataset is, its date range and its limits. Then it sits on GitHub, finished.",
+      "When I come back with SQL: the entry point is python3 analysis/run_all.py. Seven questions, already answered, waiting for me to argue with them.",
+    ]],
+  ]),
 ];
 
 const doc = new Document({
