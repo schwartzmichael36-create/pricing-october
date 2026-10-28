@@ -194,6 +194,9 @@ if __name__ == "__main__":
         failed += cap["ok"] != "1"
         if cap["ok"] != "1":
             print(f"   FAILED {r['title'][:50]}: {cap['http']} {cap['error'][:120]}", file=sys.stderr)
+            if cap["http"] in (401, 402, 403):             # plan lapsed (cancelled after Oct 28): nothing more to get today
+                print("   plan inactive; skipping the rest of this run")
+                break
     append_rows(CAP_CSV, caps)
     append_rows(LIST_CSV, lists)
     print(f"   captured {len(caps) - failed}, failed {failed}, listings {len(lists)}")
