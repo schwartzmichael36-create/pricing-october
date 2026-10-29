@@ -270,6 +270,26 @@ const children = [
       "When I come back with SQL: the entry point is python3 analysis/run_all.py. Seven questions, already answered, waiting for me to argue with them.",
     ]],
   ]),
+  ...entry("Wed Oct 28 · World Series Game 5 day", [
+    ["What happened", [
+      "Check-in: 178 of 178 runs green since Oct 22. Nothing has needed a hand in three weeks.",
+      "Nice surprise: tickets.dev kept honoring the key through today even though the renewal was cancelled, so World Series Games 1–4 got their full seven-point price curves and Game 5 is being captured. Final tally so far: 771 captures, 890,310 listings, 43,601 game snapshots.",
+      "Logged World Series Games 1–4 (results.csv at 50 rows): Brewers 3–2, Brewers 5–4, Brewers 10–1, then the Rays’ 12-inning 4–3 walk-off to avoid the sweep. Milwaukee leads 3–1, Game 5 tonight in Tampa.",
+      "The laptop’s GitHub token died. Made a new fine-grained one (repository access must be ‘Only select repositories’ with Contents read/write, or the push fails) and pushed. Lesson the hard way: I typed my GitHub password into the terminal by mistake; it’s in local history, so change it. The prompt wants a token, never the password.",
+      "Small code change: the capture loop now stops on the first ‘plan inactive’ error instead of retrying every game.",
+    ]],
+    ["What the data says", [
+      "The World Series is the cleanest illustration of the inventory rule in the whole dataset. Milwaukee’s two home games held a get-in above $2,000 and a median of $3,000–$4,500 all the way to first pitch, with only 50–80 listings left in the final hour: a true sellout where the last hour was the most expensive hour.",
+      "Tampa’s home games ran at a quarter of that ($440–$780 get-in) and decayed normally. Same series, same week, two markets, two opposite curves.",
+    ]],
+    ["Status", "Brewers lead Rays 3–1. Game 5 tonight. Dataset: Sep 28 through at least Oct 28, every round, 12 series."],
+    ["Next", [
+      "Nothing during the rest of the Series; Claude logs results.",
+      "After the last game: close-out (final results, workbook, journal, README with the date range), then turn the hourly job off around Nov 1–2.",
+      "Change the GitHub password; delete the old token.",
+      "When I pick up SQL: python3 analysis/run_all.py.",
+    ]],
+  ]),
 ];
 
 const doc = new Document({
